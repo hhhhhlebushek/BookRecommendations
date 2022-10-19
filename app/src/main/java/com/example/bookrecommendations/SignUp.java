@@ -28,13 +28,13 @@ public class SignUp extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
 
-        editTextUsername = findViewById(R.id.username);
+        editTextUsername = findViewById(R.id.lastname);
         editTextPassword = findViewById(R.id.password);
         editTextEmail = findViewById(R.id.email);
         editTextPhone = findViewById(R.id.phone);
         editTextLogin = findViewById(R.id.login);
 
-        editTextFullname = findViewById(R.id.fullname);
+        editTextFullname = findViewById(R.id.firstname);
 
         progressBar = findViewById(R.id.progress);
     }
@@ -48,10 +48,10 @@ public class SignUp extends AppCompatActivity {
     }
 
     private void signUpButton(){
-        editTextUsername = findViewById(R.id.username);
+        editTextUsername = findViewById(R.id.lastname);
         editTextPassword = findViewById(R.id.password);
         editTextEmail = findViewById(R.id.email);
-        editTextFullname = findViewById(R.id.fullname);
+        editTextFullname = findViewById(R.id.firstname);
         editTextPhone = findViewById(R.id.phone);
         editTextLogin = findViewById(R.id.login);
 
