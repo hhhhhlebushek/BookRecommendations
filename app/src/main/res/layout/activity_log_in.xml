@@ -12,14 +12,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="Log In"
+        android:text="Вход"
         android:textSize="30sp"
         />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="35dp"
-        android:text="Username"
+        android:text="Логин"
         android:textSize="12sp"
         />
     <EditText
@@ -33,7 +33,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="35dp"
-        android:text="Password"
+        android:text="Пароль"
         android:textSize="12sp"
         />
     <EditText
@@ -59,7 +59,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="10dp"
-        android:text="Login"
+        android:text="Войти"
         />
 
     <TextView
@@ -69,6 +69,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:layout_gravity="center_horizontal"
-        android:text="Sign Up Here"
+        android:text="Нет аккаунта? Регистарция"
         />
 </LinearLayout>

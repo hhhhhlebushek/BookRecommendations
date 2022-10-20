@@ -72,7 +72,7 @@ public class LogIn extends AppCompatActivity {
                             progressBar.setVisibility(View.GONE);
                             String result = putData.getResult();
 
-                            if (result.equals("Login Success")) {
+                            if (result.equals("Success")) {
                                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                                 startActivity(intent);
                                 finish();
@@ -85,7 +85,7 @@ public class LogIn extends AppCompatActivity {
             });
         }
         else {
-            Toast.makeText(getApplicationContext(), "All fields required.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Не все обязательные поля заполнены", Toast.LENGTH_SHORT).show();
         }
     }
 }

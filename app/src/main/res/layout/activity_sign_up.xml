@@ -12,14 +12,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="Sign Up"
+        android:text="Регистрация"
         android:textSize="30sp"
         tools:ignore="DuplicateIds"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Lstname"
+        android:text="Фамилия (обязательное поле)"
         android:textSize="12sp"
         android:layout_marginLeft="35dp"
         />
@@ -30,12 +30,12 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
-        android:hint="Username"
+        android:hint="Фамилия"
         ></EditText>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Firstname"
+        android:text="Имя (обязательно поле)"
         android:textSize="12sp"
         android:layout_marginLeft="35dp"
         />
@@ -46,12 +46,12 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
-        android:hint="Full name"
+        android:hint="Имя"
         ></EditText>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Number phone"
+        android:text="Номер телефона"
         android:textSize="12sp"
         android:layout_marginLeft="35dp"
         />
@@ -62,7 +62,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
-        android:hint="Number phone"
+        android:hint="Номер телефона"
         ></EditText>
     <TextView
         android:layout_width="wrap_content"
@@ -84,7 +84,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Login"
+        android:text="Логин (обязательное поле)"
         android:textSize="12sp"
         android:layout_marginLeft="35dp"
         />
@@ -95,12 +95,12 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
-        android:hint="Login"
+        android:hint="Логин"
         ></EditText>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Password"
+        android:text="Пароль (обязательное поле)"
         android:textSize="12sp"
         android:layout_marginLeft="35dp"
         />
@@ -111,7 +111,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
-        android:hint="Password"
+        android:hint="Пароль"
         ></EditText>
 
     <ProgressBar
@@ -128,7 +128,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="10dp"
-        android:text="Sign Up"
+        android:text="Регистрация"
         />
 
     <TextView
@@ -138,7 +138,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:layout_gravity="center_horizontal"
-        android:text="Login Here"
+        android:text="Уже есть аккаунт? Авторизация"
         />
 
 </LinearLayout>

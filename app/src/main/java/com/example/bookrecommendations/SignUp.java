@@ -57,15 +57,20 @@ public class SignUp extends AppCompatActivity {
 
         progressBar = findViewById(R.id.progress);
         final String lastName, firstName, email, pass, login, numberphone;
+
         lastName = String.valueOf(editTextUsername.getText());
         firstName = String.valueOf(editTextFullname.getText());
         email = String.valueOf(editTextEmail.getText());
         pass = String.valueOf(editTextPassword.getText());
         login = String.valueOf(editTextLogin.getText());
         numberphone = String.valueOf(editTextPhone.getText());
+        if(pass.length()<8){
+            Toast.makeText(getApplicationContext(), "Длина пароля не менее 8 символов", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
+        if (!lastName.equals("") && !firstName.equals("") && !login.equals("") && !pass.equals("") && pass.length()>=8) {
 
-        if (!lastName.equals("") && !firstName.equals("") && !login.equals("") && !pass.equals("")) {
 
             progressBar.setVisibility(View.VISIBLE);
             Handler handler = new Handler(Looper.getMainLooper());
@@ -94,7 +99,7 @@ public class SignUp extends AppCompatActivity {
                             progressBar.setVisibility(View.GONE);
                             String result = putData.getResult();
 
-                            if (result.equals("Sign Up Success")) {
+                            if (result.equals("Success")) {
                                onClickAuto();
                             } else {
                                 Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT).show();
@@ -104,7 +109,7 @@ public class SignUp extends AppCompatActivity {
                 }
             });
         } else {
-            Toast.makeText(getApplicationContext(), "All fields required.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Не все обязательные поля заполнены", Toast.LENGTH_SHORT).show();
         }
     }
 }
