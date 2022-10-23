@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">book recommendations</string>
+    <string name="lastname">*Введите фамилию</string>
+    <string name="firstname">*Введите имя</string>
+    <string name="phone">Введите номер телефона</string>
+    <string name="email">Введите Email</string>
+    <string name="login">*Введите логин</string>
+    <string name="password">*Введите пароль (не менее 8 символов)</string>
+    <string name="button_reg">Зарегистрироваться</string>
+    <string name="button_auto">Войти</string>
 </resources>

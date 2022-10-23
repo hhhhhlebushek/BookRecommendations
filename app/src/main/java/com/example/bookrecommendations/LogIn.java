@@ -21,8 +21,8 @@ import com.google.android.material.textfield.TextInputEditText;
 
 public class LogIn extends AppCompatActivity {
     EditText editTextUsername, editTextPassword;
-    ProgressBar progressBar;
-    TextView textViewSignUp;
+
+    //TextView textViewSignUp;
 
     @SuppressLint("WrongViewCast")
     @Override
@@ -44,16 +44,15 @@ public class LogIn extends AppCompatActivity {
     }
 
     public void loginButton(){
-        editTextUsername = findViewById(R.id.loginUsername);
-        editTextPassword = findViewById(R.id.loginPassword);
-        progressBar = findViewById(R.id.loginProgress);
+        editTextUsername = findViewById(R.id.login);
+        editTextPassword = findViewById(R.id.password);
         final String login, pass;
         login = String.valueOf(editTextUsername.getText());
         pass = String.valueOf(editTextPassword.getText());
 
         if (!login.equals("") && !pass.equals("")) {
 
-            progressBar.setVisibility(View.VISIBLE);
+
             Handler handler = new Handler(Looper.getMainLooper());
             handler.post(new Runnable() {
                 @Override
@@ -69,15 +68,17 @@ public class LogIn extends AppCompatActivity {
                     PutData putData = new PutData("http://192.168.56.1/login/login.php", "POST", field, data);
                     if (putData.startPut()) {
                         if (putData.onComplete()) {
-                            progressBar.setVisibility(View.GONE);
+
                             String result = putData.getResult();
 
                             if (result.equals("Success")) {
                                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                                 startActivity(intent);
                                 finish();
+                                //save("1", login);
                             } else {
                                 Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT).show();
+                                //save("0", "0");
                             }
                         }
                     }
@@ -87,5 +88,12 @@ public class LogIn extends AppCompatActivity {
         else {
             Toast.makeText(getApplicationContext(), "Не все обязательные поля заполнены", Toast.LENGTH_SHORT).show();
         }
+    }
+    public void save(String str, String login) {
+        SharedPreferences sharedPreferences = getSharedPreferences("MySharedPref", MODE_PRIVATE);
+        SharedPreferences.Editor myEdit = sharedPreferences.edit();
+        myEdit.putString("check", str);
+        myEdit.putString("loginInfo", login);
+        myEdit.commit();
     }
 }
