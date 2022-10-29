@@ -74,11 +74,11 @@ public class LogIn extends AppCompatActivity {
                             if (result.equals("Success")) {
                                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                                 startActivity(intent);
+                                save("1", login);
                                 finish();
-                                //save("1", login);
                             } else {
+                                save("0", "0");
                                 Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT).show();
-                                //save("0", "0");
                             }
                         }
                     }

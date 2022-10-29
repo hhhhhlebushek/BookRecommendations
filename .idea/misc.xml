@@ -3,8 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/4 class/diploma/dip/app/src/main/res/drawable/background_splash.xml" value="0.1671875" />
         <entry key="..\:/4 class/diploma/dip/app/src/main/res/drawable/btn_reg.xml" value="0.2703125" />
         <entry key="..\:/4 class/diploma/dip/app/src/main/res/drawable/rounded_edittext.xml" value="0.17760416666666667" />
+        <entry key="..\:/4 class/diploma/dip/app/src/main/res/drawable/shape_reg_auto.xml" value="0.1671875" />
         <entry key="..\:/4 class/diploma/dip/app/src/main/res/layout/a.xml" value="0.12" />
         <entry key="..\:/4 class/diploma/dip/app/src/main/res/layout/activity_log_in.xml" value="0.13020833333333334" />
         <entry key="..\:/4 class/diploma/dip/app/src/main/res/layout/activity_main.xml" value="0.12360688956433637" />

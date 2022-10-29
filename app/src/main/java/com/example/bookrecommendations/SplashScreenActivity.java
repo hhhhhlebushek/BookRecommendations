@@ -13,23 +13,23 @@ public class SplashScreenActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //setTheme(R.style.StartTheme);
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_splash_screen);
+        //setContentView(R.layout.activity_splash_screen);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
+
                 SharedPreferences sharedPreferences = getSharedPreferences("MySharedPref", MODE_PRIVATE);
                 String str = sharedPreferences.getString("check", "");
-                Intent i;
+                //Intent i;
                 if (str.equals("1")) {
-                    i = new Intent(SplashScreenActivity.this, MainActivity.class);
+                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                    startActivity(intent);
+                    finish();
                 } else {
-                    i = new Intent(SplashScreenActivity.this, LogIn.class);
+                    Intent intent = new Intent(getApplicationContext(), LogIn.class);
+                    startActivity(intent);
+                    finish();
                 }
-                startActivity(i);
-                finish();
-            }
-        }, 1000);
+
     }
 }
