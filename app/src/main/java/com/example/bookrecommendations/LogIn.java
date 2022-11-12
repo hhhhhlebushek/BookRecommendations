@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -44,6 +45,10 @@ public class LogIn extends AppCompatActivity {
     }
 
     public void loginButton(){
+        Button input;
+        input = findViewById(R.id.input);
+        input.setTypeface(Typeface.createFromAsset(
+                getAssets(), "fonts/rubik_extra_bold.ttf"));
         editTextUsername = findViewById(R.id.login);
         editTextPassword = findViewById(R.id.password);
         final String login, pass;
@@ -72,7 +77,7 @@ public class LogIn extends AppCompatActivity {
                             String result = putData.getResult();
 
                             if (result.equals("Success")) {
-                                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                                Intent intent = new Intent(getApplicationContext(), MainListApp.class);
                                 startActivity(intent);
                                 save("1", login);
                                 finish();

@@ -8,4 +8,6 @@
     <string name="password">*Введите пароль (не менее 8 символов)</string>
     <string name="button_reg">Зарегистрироваться</string>
     <string name="button_auto">Войти</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

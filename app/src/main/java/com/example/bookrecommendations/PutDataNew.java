@@ -10,18 +10,18 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 
-public class PutData extends Thread {
+public class PutDataNew extends Thread {
     private String url, method;
     String result_data = "Empty";
-    String[] data, field;
+    String data, field;
 
-    public PutData(String url, String method, String[] field, String[] data) {
+    public PutDataNew (String url, String method, String field, String data) {
         this.url = url;
         this.method = method;
-        this.data = new String[data.length];
-        this.field = new String[field.length];
-        System.arraycopy(field, 0, this.field, 0, field.length);
-        System.arraycopy(data, 0, this.data, 0, data.length);
+        this.data = data;
+        this.field = field;
+        //System.arraycopy(field, 0, this.field, 0, field);
+       // System.arraycopy(data, 0, this.data, 0, data.);
     }
 
 
@@ -37,10 +37,10 @@ public class PutData extends Thread {
             OutputStream outputStream = httpURLConnection.getOutputStream();
             BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, UTF8));
             StringBuilder post_data = new StringBuilder();
-            for (int i = 0; i < this.field.length; i++) {
-                post_data.append(URLEncoder.encode(this.field[i], "UTF-8")).
-                        append("=").append(URLEncoder.encode(this.data[i], UTF8)).append("&");
-            }
+
+                post_data.append(URLEncoder.encode(this.field, "UTF-8")).
+                        append("=").append(URLEncoder.encode(this.data, UTF8)).append("&");
+
             bufferedWriter.write(post_data.toString());
             bufferedWriter.flush();
             bufferedWriter.close();
@@ -62,7 +62,7 @@ public class PutData extends Thread {
     }
 
     public boolean startPut() {
-        PutData.this.start();
+        PutDataNew.this.start();
         return true;
     }
     public boolean onComplete() {

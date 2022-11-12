@@ -78,6 +78,7 @@
             app:met_primaryColor="@color/lilac"
             />
         <Button
+            android:id="@+id/input"
             android:clickable="true"
             android:onClick="onClick"
             android:layout_width="match_parent"

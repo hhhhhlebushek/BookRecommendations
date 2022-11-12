@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/home"
+        android:icon="@drawable/tests"
+        android:title="Тесты"/>
+    <item android:id="@+id/directory"
+        android:icon="@drawable/recommendations"
+        android:title="Мои рекомендации"/>
+    <item android:id="@+id/basket"
+        android:icon="@drawable/notes"
+        android:title="Заметки"/>
+    <item android:id="@+id/profile"
+        android:icon="@drawable/profile"
+        android:title="Профиль" />
+</menu>

@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -48,6 +49,8 @@ public class SignUp extends AppCompatActivity {
         signUpButton();
     }*/
         buttonSignUp = findViewById(R.id.buttonSignUp);
+        buttonSignUp.setTypeface(Typeface.createFromAsset(
+                getAssets(), "fonts/rubik_extra_bold.ttf"));
         buttonSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -22,7 +22,7 @@ public class SplashScreenActivity extends AppCompatActivity {
                 String str = sharedPreferences.getString("check", "");
                 //Intent i;
                 if (str.equals("1")) {
-                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                    Intent intent = new Intent(getApplicationContext(), MainListApp.class);
                     startActivity(intent);
                     finish();
                 } else {
