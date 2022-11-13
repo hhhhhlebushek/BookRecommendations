@@ -1,6 +1,7 @@
 package com.example.bookrecommendations;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
@@ -25,6 +26,8 @@ public class UpdatePersonalData extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_personal_data);
+        SharedPreferences sharedPreferences = getSharedPreferences("MySharedPref", Context.MODE_PRIVATE);
+        String loginInfo = sharedPreferences.getString("loginInfo", "");
 
         NewUsername = findViewById(R.id.newName);
         Button UpdateName;
@@ -34,8 +37,6 @@ public class UpdatePersonalData extends AppCompatActivity {
         UpdateName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                /*
                 final String name, firstName, email, pass, login, numberphone;
 
                 name = String.valueOf(NewUsername.getText());
@@ -47,10 +48,14 @@ public class UpdatePersonalData extends AppCompatActivity {
                         @Override
                         public void run() {
 
-                            String field, data;
-                            field = "firstName";
-                            data = name;
-                            PutDataNew putData = new PutDataNew("http://192.168.56.1/login/updateName.php", "POST", field, data);
+                            String[] field = new String[2];
+                            field[0] = "firstName";
+                            field[1] = "login";
+
+                            String[] data = new String[2];
+                            data[0] = name;
+                            data[1] = loginInfo;
+                            PutData putData = new PutData("http://192.168.56.1/login/updateName.php", "POST", field, data);
                             if (putData.startPut()) {
                                 if (putData.onComplete()) {
 
@@ -68,7 +73,7 @@ public class UpdatePersonalData extends AppCompatActivity {
                 } else {
                     Toast.makeText(getApplicationContext(), "Не все обязательные поля заполнены", Toast.LENGTH_SHORT).show();
                 }
-            */}
+            }
         });
 
     }

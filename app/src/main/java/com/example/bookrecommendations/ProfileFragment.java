@@ -95,7 +95,7 @@ public class ProfileFragment extends Fragment {
                                 SharedPreferences.Editor editor = sharedPreferences.edit().clear();
                                 editor.commit();
 
-                                Handler handler = new Handler(Looper.getMainLooper());
+                               /* Handler handler = new Handler(Looper.getMainLooper());
                                 handler.post(new Runnable() {
                                     @Override
                                     public void run() {
@@ -107,7 +107,7 @@ public class ProfileFragment extends Fragment {
                                             }
                                         }
                                     }
-                                });
+                                });*/
 
 
                                 Intent i = new Intent(getActivity(), LogIn.class);
