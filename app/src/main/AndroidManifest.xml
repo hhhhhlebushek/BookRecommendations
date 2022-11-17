@@ -22,7 +22,7 @@
         </activity>
         <activity android:name=".LogIn" android:exported="false"></activity>
         <activity android:name=".UpdatePersonalData" android:exported="false"></activity>
-
+        <activity android:name=".UpdateDataEUZ" android:exported="false"></activity>
         <activity android:name=".MainActivity" android:exported="false"></activity>
         <activity android:name=".SignUp" android:exported="false"/>
         <activity

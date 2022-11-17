@@ -11,6 +11,7 @@ import android.os.Looper;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -27,13 +28,12 @@ public class UpdatePersonalData extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_personal_data);
         SharedPreferences sharedPreferences = getSharedPreferences("MySharedPref", Context.MODE_PRIVATE);
-        String loginInfo = sharedPreferences.getString("loginInfo", "");
+        String id = sharedPreferences.getString("id", "");
 
         NewUsername = findViewById(R.id.newName);
         NewUserFam = findViewById(R.id.newFam);
         NewUserEmail = findViewById(R.id.newEmail);
         NewUserPhone = findViewById(R.id.newPhone);
-
         Button UpdateName,UpdateFam,UpdateEmail,UpdatePhone;
         UpdateName = findViewById(R.id.buttonNewName);
         UpdateFam = findViewById(R.id.buttonNewFam);
@@ -64,11 +64,11 @@ public class UpdatePersonalData extends AppCompatActivity {
 
                             String[] field = new String[2];
                             field[0] = "firstName";
-                            field[1] = "login";
+                            field[1] = "id";
 
                             String[] data = new String[2];
                             data[0] = name;
-                            data[1] = loginInfo;
+                            data[1] = id;
                             PutData putData = new PutData("http://192.168.56.1/login/updateData.php", "POST", field, data);
                             if (putData.startPut()) {
                                 if (putData.onComplete()) {
@@ -107,11 +107,11 @@ public class UpdatePersonalData extends AppCompatActivity {
 
                             String[] field = new String[2];
                             field[0] = "lastname";
-                            field[1] = "login";
+                            field[1] = "id";
 
                             String[] data = new String[2];
                             data[0] = lastname;
-                            data[1] = loginInfo;
+                            data[1] = id;
                             PutData putData = new PutData("http://192.168.56.1/login/updateData.php", "POST", field, data);
                             if (putData.startPut()) {
                                 if (putData.onComplete()) {
@@ -150,11 +150,11 @@ public class UpdatePersonalData extends AppCompatActivity {
 
                             String[] field = new String[2];
                             field[0] = "email";
-                            field[1] = "login";
+                            field[1] = "id";
 
                             String[] data = new String[2];
                             data[0] = email;
-                            data[1] = loginInfo;
+                            data[1] = id;
                             PutData putData = new PutData("http://192.168.56.1/login/updateData.php", "POST", field, data);
                             if (putData.startPut()) {
                                 if (putData.onComplete()) {
@@ -192,11 +192,11 @@ public class UpdatePersonalData extends AppCompatActivity {
 
                             String[] field = new String[2];
                             field[0] = "numberphone";
-                            field[1] = "login";
+                            field[1] = "id";
 
                             String[] data = new String[2];
                             data[0] = phone;
-                            data[1] = loginInfo;
+                            data[1] = id;
                             PutData putData = new PutData("http://192.168.56.1/login/updateData.php", "POST", field, data);
                             if (putData.startPut()) {
                                 if (putData.onComplete()) {

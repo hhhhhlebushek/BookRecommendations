@@ -10,19 +10,35 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.content.SharedPreferences;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.android.material.textfield.TextInputEditText;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 
 public class LogIn extends AppCompatActivity {
     EditText editTextUsername, editTextPassword;
-
+    ListView listView;
     //TextView textViewSignUp;
 
     @SuppressLint("WrongViewCast")
@@ -46,12 +62,13 @@ public class LogIn extends AppCompatActivity {
 
     public void loginButton(){
         Button input;
+        TextView t=findViewById(R.id.t);
         input = findViewById(R.id.input);
         input.setTypeface(Typeface.createFromAsset(
                 getAssets(), "fonts/rubik_extra_bold.ttf"));
         editTextUsername = findViewById(R.id.login);
         editTextPassword = findViewById(R.id.password);
-        final String login, pass;
+        final String login, pass, tt;
         login = String.valueOf(editTextUsername.getText());
         pass = String.valueOf(editTextPassword.getText());
 
@@ -73,17 +90,32 @@ public class LogIn extends AppCompatActivity {
                     PutData putData = new PutData("http://192.168.56.1/login/login.php", "POST", field, data);
                     if (putData.startPut()) {
                         if (putData.onComplete()) {
-
+                            ArrayList<JSONObject> listItems;
                             String result = putData.getResult();
+                            final JSONObject[] a = new JSONObject[1];
+                            final String[] id = new String[1];
+                            try {
+                                JSONObject object = new JSONObject(EncodingToUTF8(result));
 
-                            if (result.equals("Success")) {
+                                JSONArray jsonarray = object.getJSONArray("users");
+                                listItems = getArrayListFromJSONArray(jsonarray);
+                                //t.setText(listItems.get(0).getString("idEUZ"));
+                                id[0] = listItems.get(0).getString("idEUZ");
+
+                                //t.setText(loudScreaming[0]);
+
+
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                            if (id[0]!=null) {
                                 Intent intent = new Intent(getApplicationContext(), MainListApp.class);
                                 startActivity(intent);
-                                save("1", login);
+                                save("1", id[0]);
                                 finish();
                             } else {
                                 save("0", "0");
-                                Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), "Ошбика входа", Toast.LENGTH_SHORT).show();
                             }
                         }
                     }
@@ -94,11 +126,36 @@ public class LogIn extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "Не все обязательные поля заполнены", Toast.LENGTH_SHORT).show();
         }
     }
-    public void save(String str, String login) {
+    public void save(String str, String id) {
         SharedPreferences sharedPreferences = getSharedPreferences("MySharedPref", MODE_PRIVATE);
         SharedPreferences.Editor myEdit = sharedPreferences.edit();
         myEdit.putString("check", str);
-        myEdit.putString("loginInfo", login);
+        myEdit.putString("id", id);
         myEdit.commit();
+    }
+
+    public  static  String EncodingToUTF8(String response){
+        try {
+            byte[] code = response.toString().getBytes("ISO-8859-1");
+            response = new String(code, "UTF-8");
+        }catch (UnsupportedEncodingException e){
+            e.printStackTrace();
+            return null;
+        }
+        return response;
+    }
+
+    private ArrayList< JSONObject> getArrayListFromJSONArray(JSONArray jsonArray){
+        ArrayList< JSONObject> aList = new ArrayList< JSONObject>();
+        try {
+            if(jsonArray!= null){
+                for(int i = 0; i< jsonArray.length();i++){
+                    aList.add(jsonArray.getJSONObject(i));
+                }
+            }
+        }catch (JSONException js){
+            js.printStackTrace();
+        }
+        return aList;
     }
 }

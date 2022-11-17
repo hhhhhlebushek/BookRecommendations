@@ -11,6 +11,7 @@ import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
 
+import androidx.annotation.Dimension;
 import androidx.annotation.RequiresApi;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
@@ -95,21 +96,6 @@ public class ProfileFragment extends Fragment {
                                 SharedPreferences.Editor editor = sharedPreferences.edit().clear();
                                 editor.commit();
 
-                               /* Handler handler = new Handler(Looper.getMainLooper());
-                                handler.post(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        ExitPHP exitPHP = new ExitPHP("http://192.168.56.1/login/exit.php", "POST");
-                                        if (exitPHP.startPut()) {
-                                            if (exitPHP.onComplete()) {
-
-                                                String result = exitPHP.getResult();
-                                            }
-                                        }
-                                    }
-                                });*/
-
-
                                 Intent i = new Intent(getActivity(), LogIn.class);
                                 startActivity(i);
                                 getActivity().finish();
@@ -127,16 +113,16 @@ public class ProfileFragment extends Fragment {
                 builder.create().show();
             }// end onClick
         });
+        LinearLayout constraintLayout;
+
         Button bt_setting = new Button(getContext());
-        bt_setting.setText("Настройка аккаунта");
+        bt_setting.setText("Обновление личных данных");
         bt_setting.setBackgroundResource(R.drawable.btn_item_in_profile);
         bt_setting.setWidth(850);
         bt_setting.setHeight(200);
         bt_setting.setTextColor(Color.parseColor("#F38269"));
         bt_setting.setLeftTopRightBottom(20,20,0,0);
         bt_setting.setTypeface(Typeface.createFromAsset(getActivity().getAssets(), "fonts/rubik_extra_bold.ttf"));
-        LinearLayout constraintLayout = (LinearLayout)rootView.findViewById(R.id.linearLayout);
-        constraintLayout.addView(bt_setting);
         bt_setting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -145,6 +131,28 @@ public class ProfileFragment extends Fragment {
 
             }// end onClick
         });
+        Button bt_EUZ = new Button(getContext());
+        bt_EUZ.setText("Обновление данных входа");
+        bt_EUZ.setBackgroundResource(R.drawable.btn_item_in_profile);
+        bt_EUZ.setWidth(850);
+        bt_EUZ.setHeight(200);
+        bt_EUZ.setY(70);
+        bt_EUZ.setTextColor(Color.parseColor("#F38269"));
+        bt_EUZ.setLeftTopRightBottom(20,20,0,0);
+        bt_EUZ.setTypeface(Typeface.createFromAsset(getActivity().getAssets(), "fonts/rubik_extra_bold.ttf"));
+        bt_EUZ.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), UpdateDataEUZ.class);
+                startActivity(intent);
+
+            }// end onClick
+        });
+
+        constraintLayout = (LinearLayout)rootView.findViewById(R.id.linearLayout);
+        constraintLayout.addView(bt_setting);
+        //constraintLayout.addView(rootView.createRigidArea(new Dimension(5, 0)));
+        constraintLayout.addView(bt_EUZ);
         return rootView;
     }
 }
