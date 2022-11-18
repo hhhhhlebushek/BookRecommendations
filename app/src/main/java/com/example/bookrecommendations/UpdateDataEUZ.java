@@ -94,7 +94,43 @@ public class UpdateDataEUZ extends AppCompatActivity {
         UpdatePass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                final String pass;
 
+                pass = String.valueOf(NewUserPass.getText());
+
+                if (!pass.equals("")) {
+
+                    Handler handler = new Handler(Looper.getMainLooper());
+                    handler.post(new Runnable() {
+                        @Override
+                        public void run() {
+
+                            String[] field = new String[2];
+                            field[0] = "pass";
+                            field[1] = "id";
+
+                            String[] data = new String[2];
+                            data[0] = pass;
+                            data[1] = id;
+                            PutData putData = new PutData("http://192.168.56.1/login/updateData.php", "POST", field, data);
+                            if (putData.startPut()) {
+                                if (putData.onComplete()) {
+
+                                    String result = putData.getResult();
+
+                                    if (result.equals("Success")) {
+                                        Toast.makeText(getApplicationContext(), "Пароль удачно обновлен!", Toast.LENGTH_SHORT).show();
+                                    } else {
+                                        Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT).show();
+                                    }
+                                    NewUserPass.setText(null);
+                                }
+                            }
+                        }
+                    });
+                } else {
+                    Toast.makeText(getApplicationContext(), "Не все обязательные поля заполнены", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 

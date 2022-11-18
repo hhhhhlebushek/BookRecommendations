@@ -35,39 +35,7 @@
         <com.rengwuxian.materialedittext.MaterialEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/newName"
-            android:hint="Введите новое имя"
-            android:layout_marginBottom="20dp"
-            android:fontFamily="@font/rubik"
-            android:text=""
-            android:textColor="@color/black"
-            android:textColorHint="@color/lilac"
-            android:textSize="18dp"
-            app:met_baseColor="@color/orange"
-
-            app:met_floatingLabel="highlight"
-            app:met_primaryColor="@color/lilac"
-            />
-
-        <Button
-            android:id="@+id/buttonNewName"
-            android:layout_width="310dp"
-            android:layout_height="50dp"
-            android:layout_gravity="center"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/btn_reg"
-           android:fontFamily="@font/rubik_bold"
-            android:shadowRadius="@integer/google_play_services_version"
-            android:text="Обновить имя"
-            android:textSize="14dp"
-            />
-        <com.rengwuxian.materialedittext.MaterialEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:id="@+id/newFam"
-            android:layout_marginTop="20dp"
             android:hint="Введите новую фамилию"
             android:layout_marginBottom="20dp"
             android:fontFamily="@font/rubik"
@@ -93,6 +61,38 @@
             android:fontFamily="@font/rubik_bold"
             android:shadowRadius="@integer/google_play_services_version"
             android:text="Обновить фамилию"
+            android:textSize="14dp"
+            />
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/newName"
+            android:hint="Введите новое имя"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/rubik"
+            android:text=""
+            android:layout_marginBottom="20dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/lilac"
+            android:textSize="18dp"
+            app:met_baseColor="@color/orange"
+
+            app:met_floatingLabel="highlight"
+            app:met_primaryColor="@color/lilac"
+            />
+
+        <Button
+            android:id="@+id/buttonNewName"
+            android:layout_width="310dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/btn_reg"
+            android:fontFamily="@font/rubik_bold"
+            android:shadowRadius="@integer/google_play_services_version"
+            android:text="Обновить имя"
             android:textSize="14dp"
             />
         <com.rengwuxian.materialedittext.MaterialEditText
