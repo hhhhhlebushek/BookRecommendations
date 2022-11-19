@@ -13,8 +13,8 @@ public class ListViewAdapter extends ArrayAdapter< JSONObject> {
     int listLayout;
     ArrayList< JSONObject> usersList;
     Context context;
-    public ListViewAdapter(Context context, int listLayout , int field, ArrayList< JSONObject> usersList) {
-        super(context, listLayout, field, usersList);
+    public ListViewAdapter(Context context, int listLayout, ArrayList< JSONObject> usersList) {
+        super(context, listLayout, usersList);
         this.context = context;
         this.listLayout=listLayout;
         this.usersList = usersList;

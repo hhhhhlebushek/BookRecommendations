@@ -13,15 +13,10 @@ import java.net.URLEncoder;
 public class PutDataNew extends Thread {
     private String url, method;
     String result_data = "Empty";
-    String data, field;
 
-    public PutDataNew (String url, String method, String field, String data) {
+    public PutDataNew (String url, String method) {
         this.url = url;
         this.method = method;
-        this.data = data;
-        this.field = field;
-        //System.arraycopy(field, 0, this.field, 0, field);
-       // System.arraycopy(data, 0, this.data, 0, data.);
     }
 
 
@@ -38,8 +33,7 @@ public class PutDataNew extends Thread {
             BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, UTF8));
             StringBuilder post_data = new StringBuilder();
 
-                post_data.append(URLEncoder.encode(this.field, "UTF-8")).
-                        append("=").append(URLEncoder.encode(this.data, UTF8)).append("&");
+
 
             bufferedWriter.write(post_data.toString());
             bufferedWriter.flush();
