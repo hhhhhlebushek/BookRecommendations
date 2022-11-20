@@ -115,7 +115,7 @@ public class LogIn extends AppCompatActivity {
                                 finish();
                             } else {
                                 save("0", "0");
-                                Toast.makeText(getApplicationContext(), "Ошбика входа", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), "Ошибка входа", Toast.LENGTH_SHORT).show();
                             }
                         }
                     }

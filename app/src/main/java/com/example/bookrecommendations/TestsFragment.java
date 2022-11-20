@@ -94,7 +94,7 @@ public class TestsFragment extends Fragment {
             @Override
             public void run() {
 
-                PutDataNew putData = new PutDataNew("http://192.168.56.1/tests/parsingMainTest.php", "POST");
+                PutDataNew putData = new PutDataNew("http://192.168.56.1/tests/parsingNameTests.php", "POST");
                 if (putData.startPut()) {
                     if (putData.onComplete()) {
                         ArrayList<JSONObject> listItems;
@@ -106,20 +106,24 @@ public class TestsFragment extends Fragment {
                         //progressBar.setVisibility(View.INVISIBLE);
                         try {
                             JSONObject object = new JSONObject(EncodingToUTF8(result));
-                            JSONArray jsonarray = object.toJSONArray(object.names());
-                           //JSONArray jsonarray = jsonarray.getJSONArray("ask1");
+                            JSONArray jsonarray = object.getJSONArray("nameTests");
+                            //JSONArray jsonarray = object.toJSONArray(object.names());
 
                             listItems = getArrayListFromJSONArray(jsonarray);
+                            //t.setText(listItems.get(0).getString("1"));
                             for(int i=0;i<listItems.size();i++) {
-                                title[i] = listItems.get(i).getString("title");
+                                title[i] = listItems.get(i).getString(getName(i+1));
                                 arrayList.add(title[i]);
                                 listView.setOnItemClickListener( new AdapterView.OnItemClickListener() {
                                     public void onItemClick(AdapterView<?> arg0, View view, int i, long arg3) {
                                         Intent intent =null;
+
                                         switch (i)
                                         {
                                             case 0:
-                                                intent = new Intent(getActivity(), MainActivity.class);break;
+                                                intent = new Intent(getActivity(), QuizeActivity.class);
+                                                intent.putExtra("nameTest", title[i]);
+                                                break;
                                             case 1:
                                                 intent = new Intent(getActivity(), LogIn.class);break;
                                             default: intent = new Intent(getActivity(), SignUp.class);break;
@@ -128,6 +132,8 @@ public class TestsFragment extends Fragment {
                                     }
                                 });
                             }
+
+
 
 
                             arrayAdapter.notifyDataSetChanged();
@@ -155,6 +161,11 @@ public class TestsFragment extends Fragment {
         }
         return response;
     }
+
+    public  static  String getName(int i){
+        return String.valueOf(i);
+    }
+
     private ArrayList< JSONObject> getArrayListFromJSONArray(JSONArray jsonArray){
         ArrayList< JSONObject> aList = new ArrayList< JSONObject>();
         try {
