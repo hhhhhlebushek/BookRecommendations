@@ -6,6 +6,7 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -13,6 +14,7 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -25,7 +27,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class QuizeActivity extends AppCompatActivity {
-
+    public static ArrayList<String> arrayList = new ArrayList<String>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,6 +81,7 @@ public class QuizeActivity extends AppCompatActivity {
                                 ask[2][i] = listItems3.get(i).getString(getName(i + 1));
                                 ask[3][i] = listItems4.get(i).getString(getName(i + 1));
                             }
+                            arrayList.clear();
                             Bundle arguments = getIntent().getExtras();
                             String data = arguments.get("nameTest").toString();
                             nameTest.setText(data);
@@ -95,8 +98,45 @@ public class QuizeActivity extends AppCompatActivity {
                                         index[0] = asks(listItems1,ask, index[0]);
                                     }
                                     else{
-                                        Intent intent = new Intent(getApplicationContext(), LogIn.class);
-                                        startActivity(intent);
+                                        String[] mas = arrayList.toArray(new String[arrayList.size()]);
+                                        Handler handler1 = new Handler();
+                                        handler1.post(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                String[] field = new String[1];
+                                                field[0] = "result";
+                                                int size= arrayList.size();
+                                                String[] data = new String[size];
+                                                /*for(int i=0; i<size; i++){
+                                                    data[i] = arrayList.get(i);
+                                                }*/
+                                                data[0]=arrayList.toString();
+                                                PutData putData = new PutData("http://192.168.56.1/tests/resultMainTest.php", "POST", field, data);
+                                                if (putData.startPut()) {
+                                                    if (putData.onComplete()) {
+                                                        String result = putData.getResult();
+                                                        Intent intent;
+                                                        //Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT).show();
+                                                        if (result.equals("Success")) {
+                                                            Toast.makeText(getApplicationContext(), "Ваши ответы получены", Toast.LENGTH_SHORT).show();
+                                                            //intent = new Intent(getApplicationContext(), LogIn.class);
+                                                        } else {
+                                                            Toast.makeText(getApplicationContext(), "Ошибка!", Toast.LENGTH_SHORT).show();
+                                                            //intent = new Intent(getApplicationContext(), SignUp.class);
+                                                        }
+                                                        //startActivity(intent);
+
+                                                        //Toast.makeText(getApplicationContext(), data[0], Toast.LENGTH_SHORT).show();
+                                                    }
+                                                }
+
+
+                                                //Toast.makeText(getApplicationContext(), data[0], Toast.LENGTH_SHORT).show();
+                                            }
+                                        });
+
+
+                                        //Toast.makeText(getApplicationContext(), arrayList.toString(), Toast.LENGTH_SHORT).show();
                                     }
                                 }// end onClick
                             });
@@ -151,6 +191,7 @@ public class QuizeActivity extends AppCompatActivity {
             Button l = new Button(getApplicationContext());
             l.setStateListAnimator(null);
             c.setText(ask[j][i]);
+            String finalR = ask[j][i];
             c.setBackgroundResource(R.drawable.btn_item_in_profile);
             c.setWidth(12);
             c.setButtonDrawable(R.drawable.nocheck);
@@ -161,10 +202,18 @@ public class QuizeActivity extends AppCompatActivity {
             l.setBackgroundResource(R.drawable.btn_null);
             c.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                    if (isChecked){
-                        c.setButtonDrawable(R.drawable.check);c.setHeight(115);}
+                    if (isChecked)
+                    {
+                        c.setButtonDrawable(R.drawable.check);
+                        c.setHeight(115);
+                        //Toast.makeText(getApplicationContext(), finalR, Toast.LENGTH_SHORT).show();
+                        QuizeActivity.arrayList.add(finalR);
+                    }
                     else{
-                        c.setButtonDrawable(R.drawable.nocheck); c.setHeight(115);}
+                        QuizeActivity.arrayList.remove(finalR);
+                        c.setButtonDrawable(R.drawable.nocheck);
+                        c.setHeight(115);
+                    }
                 }
             });
             constraintLayout.addView(c);constraintLayout.addView(l);
