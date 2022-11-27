@@ -104,8 +104,7 @@ public class TestsFragment extends Fragment {
                         final String[] title = new String[100];
                         final String loc="l";
                         //progressBar.setVisibility(View.INVISIBLE);
-                        try {
-                            JSONObject object = new JSONObject(EncodingToUTF8(result));
+                        try {   JSONObject object = new JSONObject(EncodingToUTF8(result));
                             JSONArray jsonarray = object.getJSONArray("nameTests");
                             //JSONArray jsonarray = object.toJSONArray(object.names());
 
@@ -141,6 +140,7 @@ public class TestsFragment extends Fragment {
                             e.printStackTrace();
                             t.setText(e.toString());
                         }
+
 
                     }
                 }

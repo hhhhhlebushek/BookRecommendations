@@ -118,11 +118,33 @@ public class QuizeActivity extends AppCompatActivity {
                                                         Intent intent;
                                                         //Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT).show();
                                                         if (result.equals("Success")) {
-                                                            Toast.makeText(getApplicationContext(), "Ваши ответы получены", Toast.LENGTH_SHORT).show();
-                                                            //intent = new Intent(getApplicationContext(), LogIn.class);
-                                                        } else {
+                                                            //Toast.makeText(getApplicationContext(), "Ваши ответы получены", Toast.LENGTH_SHORT).show();
+                                                            intent = new Intent(getApplicationContext(), CreateRec.class);
+                                                            startActivity(intent);
+                                                        }
+                                                        else if(result.equals("Wrong")){
+                                                            Toast.makeText(getApplicationContext(), "Вы не выбрали ни одного варианта!", Toast.LENGTH_SHORT).show();
+                                                            intent = new Intent(getApplicationContext(),TestsFragment.class);
+                                                            intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                                                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                                            startActivity(intent);
+                                                            overridePendingTransition (0, 0);
+                                                        }
+                                                        else if(result.equals("Error")){
                                                             Toast.makeText(getApplicationContext(), "Ошибка!", Toast.LENGTH_SHORT).show();
-                                                            //intent = new Intent(getApplicationContext(), SignUp.class);
+                                                            intent = new Intent(getApplicationContext(),TestsFragment.class);
+                                                            intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                                                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                                            startActivity(intent);
+                                                            overridePendingTransition (0, 0);
+                                                        }
+                                                        else {
+                                                            Toast.makeText(getApplicationContext(), "Ошибка!", Toast.LENGTH_SHORT).show();
+                                                            intent = new Intent(getApplicationContext(),TestsFragment.class);
+                                                            intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                                                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                                            startActivity(intent);
+                                                            overridePendingTransition (0, 0);
                                                         }
                                                         //startActivity(intent);
 
