@@ -67,7 +67,7 @@
                 <ListView
                     android:id="@+id/list"
                     android:layout_width="wrap_content"
-                    android:layout_height="700dp"
+                    android:layout_height="3000dp"
 
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
