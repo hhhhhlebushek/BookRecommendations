@@ -26,6 +26,7 @@
         <activity android:name=".MainActivity" android:exported="false"></activity>
         <activity android:name=".QuizeActivity" android:exported="false"></activity>
         <activity android:name=".CreateRec" android:exported="false"></activity>
+        <activity android:name=".AddTest" android:exported="false"></activity>
         <activity android:name=".SignUp" android:exported="false"/>
         <activity
             android:name=".MainListApp"

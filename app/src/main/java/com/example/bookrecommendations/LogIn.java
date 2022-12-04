@@ -94,6 +94,7 @@ public class LogIn extends AppCompatActivity {
                             String result = putData.getResult();
                             final JSONObject[] a = new JSONObject[1];
                             final String[] id = new String[1];
+                            final String[] role = new String[1];
                             try {
                                 JSONObject object = new JSONObject(EncodingToUTF8(result));
 
@@ -101,8 +102,9 @@ public class LogIn extends AppCompatActivity {
                                 listItems = getArrayListFromJSONArray(jsonarray);
                                 //t.setText(listItems.get(0).getString("idEUZ"));
                                 id[0] = listItems.get(0).getString("idEUZ");
+                                role[0] = listItems.get(0).getString("role");
 
-                                //t.setText(loudScreaming[0]);
+                                //t.setText(role[0]);
 
 
                             } catch (JSONException e) {
@@ -111,10 +113,11 @@ public class LogIn extends AppCompatActivity {
                             if (id[0]!=null) {
                                 Intent intent = new Intent(getApplicationContext(), MainListApp.class);
                                 startActivity(intent);
-                                save("1", id[0]);
+                                save("1", id[0], role[0]);
+
                                 finish();
                             } else {
-                                save("0", "0");
+                                save("0", "0", null);
                                 Toast.makeText(getApplicationContext(), "Ошибка входа", Toast.LENGTH_SHORT).show();
                             }
                         }
@@ -126,11 +129,12 @@ public class LogIn extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "Не все обязательные поля заполнены", Toast.LENGTH_SHORT).show();
         }
     }
-    public void save(String str, String id) {
+    public void save(String str, String id, String role) {
         SharedPreferences sharedPreferences = getSharedPreferences("MySharedPref", MODE_PRIVATE);
         SharedPreferences.Editor myEdit = sharedPreferences.edit();
         myEdit.putString("check", str);
         myEdit.putString("id", id);
+        myEdit.putString("role", role);
         myEdit.commit();
     }
 

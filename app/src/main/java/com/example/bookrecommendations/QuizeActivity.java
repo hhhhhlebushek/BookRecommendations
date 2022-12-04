@@ -42,134 +42,166 @@ public class QuizeActivity extends AppCompatActivity {
         handler.post(new Runnable() {
             @Override
             public void run() {
+                Bundle arguments = getIntent().getExtras();
+                String data = arguments.get("nameTest").toString();
                 final int[] index = {1};
-                PutDataNew putData = new PutDataNew("http://192.168.56.1/tests/parsingMainTest.php", "POST");
+                String[] field = new String[1];
+                field[0] = "nameTest";
+
+                String[] DATA = new String[1];
+                DATA[0] = data;
+                PutData putData = new PutData("http://192.168.56.1/tests/p.php", "POST", field, DATA);
                 if (putData.startPut()) {
                     if (putData.onComplete()) {
-                        ArrayList<JSONObject> listItems,listItems1,listItems2,listItems3,listItems4;
+                        ArrayList<JSONObject> listItems, listItems1, listItems2, listItems3, listItems4;
                         String result = putData.getResult();
-                        int N = 10;
-                        int a=1;
-                        final String[] title = new String[4];
-                        final String[][] ask = new String[4][5];
-                        final String loc="l";
-                        try {
-                            JSONObject object = new JSONObject(EncodingToUTF8(result));
-                            //JSONArray jsonarray = object.toJSONArray(object.names());
-                            JSONArray jsonarray = object.getJSONArray("titles");
-                            listItems = getArrayListFromJSONArray(jsonarray);
+                        if (result.equals("wrong") || result.equals("Error") ) {
+                            Toast.makeText(getApplicationContext(), "бебебе", Toast.LENGTH_SHORT).show();
 
-                            JSONArray jsonarray1 = object.getJSONArray("ask1");
-                            listItems1 = getArrayListFromJSONArray(jsonarray1);
+                        }
+                        else{
+                            //Toast.makeText(getApplicationContext(), "Вы не выбрали ни одного варианта!", Toast.LENGTH_SHORT).show();
+                            int N = 10;
+                            int a=1;
+                            int size =0;
+                            final String[] title = new String[100];
+                            final String[][] ask = new String[100][100];
+                            final String loc="l";
+                            try {
+                                JSONObject object = new JSONObject(EncodingToUTF8(result));
+                            /*Bundle argument = getIntent().getExtras();
+                            String titles = argument.get("quastionsTest").toString();
+                            String ask1 = argument.get("var1").toString();
+                            String ask2 = argument.get("var2").toString();
+                            String ask3 = argument.get("var3").toString();
+                            String ask4 = argument.get("var4").toString();*/
+                                size =object.length();
+                                size--;
+                                System.out.println("size: " + size);
+                                //JSONArray jsonarray = object.toJSONArray(object.names());
+                                JSONArray jsonarray = object.getJSONArray("titles");
+                                listItems = getArrayListFromJSONArray(jsonarray);
 
-                            JSONArray jsonarray2 = object.getJSONArray("ask2");
-                            listItems2 = getArrayListFromJSONArray(jsonarray2);
+                                JSONArray jsonarray1 = object.getJSONArray("ask1");
+                                listItems1 = getArrayListFromJSONArray(jsonarray1);
 
-                            JSONArray jsonarray3 = object.getJSONArray("ask3");
-                            listItems3 = getArrayListFromJSONArray(jsonarray3);
+                                JSONArray jsonarray2 = object.getJSONArray("ask2");
+                                listItems2 = getArrayListFromJSONArray(jsonarray2);
 
-                            JSONArray jsonarray4 = object.getJSONArray("ask4");
-                            listItems4 = getArrayListFromJSONArray(jsonarray4);
+                                JSONArray jsonarray3 = object.getJSONArray("ask3");
+                                listItems3 = getArrayListFromJSONArray(jsonarray3);
 
-                            for(int i=0;i<listItems.size();i++) {
-                                title[i] = listItems.get(i).getString(getName(i+1));
-                                //t.setText(title[i].toString());
-                            }
-                            for (int i = 0; i < listItems1.size(); i++) {
-                                ask[0][i] = listItems1.get(i).getString(getName(i + 1));
-                                ask[1][i] = listItems2.get(i).getString(getName(i + 1));
-                                ask[2][i] = listItems3.get(i).getString(getName(i + 1));
-                                ask[3][i] = listItems4.get(i).getString(getName(i + 1));
-                            }
-                            arrayList.clear();
-                            Bundle arguments = getIntent().getExtras();
-                            String data = arguments.get("nameTest").toString();
-                            nameTest.setText(data);
-                            question.setText(title[0]);
-                          asks(listItems1,ask, 0);
-                            index[0]=1;
-                            next.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View view) {
-                                    int j= 1;
-                                    if (index[0] >=1 && index[0] <4){
-                                        nameTest.setText(data);
-                                        question.setText(title[index[0]]);
-                                        index[0] = asks(listItems1,ask, index[0]);
-                                    }
-                                    else{
-                                        String[] mas = arrayList.toArray(new String[arrayList.size()]);
-                                        Handler handler1 = new Handler();
-                                        handler1.post(new Runnable() {
-                                            @Override
-                                            public void run() {
-                                                String[] field = new String[1];
-                                                field[0] = "result";
-                                                int size= arrayList.size();
-                                                String[] data = new String[size];
+                                JSONArray jsonarray4 = object.getJSONArray("ask4");
+                                listItems4 = getArrayListFromJSONArray(jsonarray4);
+
+
+                                for(int i=0;i<listItems.size();i++) {
+                                    title[i] = listItems.get(i).getString(getName(i+1));
+                                    //t.setText(title[i].toString());
+                                }
+                                for (int i = 0; i < listItems1.size(); i++) {
+                                    ask[0][i] = listItems1.get(i).getString(getName(i + 1));
+                                    ask[1][i] = listItems2.get(i).getString(getName(i + 1));
+                                    ask[2][i] = listItems3.get(i).getString(getName(i + 1));
+                                    ask[3][i] = listItems4.get(i).getString(getName(i + 1));
+                                }
+                                arrayList.clear();
+
+                                data=data.replace("_", " ");
+                                nameTest.setText(data);
+                                number.setText("Вопрос 1 из 10");
+                                question.setText(title[0]);
+                                asks(listItems1,ask, 0);
+                                index[0]=1;
+                                int finalSize = size;
+                                String finalData = data;
+                                next.setTypeface(Typeface.createFromAsset(getApplicationContext().getAssets(), "fonts/rubik_extra_bold.ttf"));
+                                next.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+                                        int j= 1;
+                                        if (index[0] >=1 && index[0] < finalSize){
+                                            nameTest.setText(finalData);
+                                            question.setText(title[index[0]]);
+                                            index[0] = asks(listItems1,ask, index[0]);
+                                            number.setText("Вопрос "+index[0]+" из 10");
+                                            if(index[0] == finalSize){
+                                                next.setText("Получить рекомендации");
+                                            }
+                                        }
+                                        else{
+                                            String[] mas = arrayList.toArray(new String[arrayList.size()]);
+                                            Handler handler1 = new Handler();
+                                            handler1.post(new Runnable() {
+                                                @Override
+                                                public void run() {
+                                                    String[] field = new String[1];
+                                                    field[0] = "result";
+                                                    int size= arrayList.size();
+                                                    String[] data = new String[size];
                                                 /*for(int i=0; i<size; i++){
                                                     data[i] = arrayList.get(i);
                                                 }*/
-                                                data[0]=arrayList.toString();
-                                                PutData putData = new PutData("http://192.168.56.1/tests/resultMainTest.php", "POST", field, data);
-                                                if (putData.startPut()) {
-                                                    if (putData.onComplete()) {
-                                                        String result = putData.getResult();
-                                                        Intent intent;
-                                                        //Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT).show();
-                                                        if (result.equals("Success")) {
-                                                            //Toast.makeText(getApplicationContext(), "Ваши ответы получены", Toast.LENGTH_SHORT).show();
-                                                            intent = new Intent(getApplicationContext(), CreateRec.class);
-                                                            startActivity(intent);
-                                                        }
-                                                        else if(result.equals("Wrong")){
-                                                            Toast.makeText(getApplicationContext(), "Вы не выбрали ни одного варианта!", Toast.LENGTH_SHORT).show();
-                                                            intent = new Intent(getApplicationContext(),TestsFragment.class);
-                                                            intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                                                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                                                            startActivity(intent);
-                                                            overridePendingTransition (0, 0);
-                                                        }
-                                                        else if(result.equals("Error")){
-                                                            Toast.makeText(getApplicationContext(), "Ошибка!", Toast.LENGTH_SHORT).show();
-                                                            intent = new Intent(getApplicationContext(),TestsFragment.class);
-                                                            intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                                                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                                                            startActivity(intent);
-                                                            overridePendingTransition (0, 0);
-                                                        }
-                                                        else {
-                                                            Toast.makeText(getApplicationContext(), "Ошибка!", Toast.LENGTH_SHORT).show();
-                                                            intent = new Intent(getApplicationContext(),TestsFragment.class);
-                                                            intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                                                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                                                            startActivity(intent);
-                                                            overridePendingTransition (0, 0);
-                                                        }
-                                                        //startActivity(intent);
+                                                    data[0]=arrayList.toString();
+                                                    PutData putData = new PutData("http://192.168.56.1/tests/resultMainTest.php", "POST", field, data);
+                                                    if (putData.startPut()) {
+                                                        if (putData.onComplete()) {
+                                                            String result = putData.getResult();
+                                                            Intent intent;
+                                                            //Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT).show();
+                                                            if (result.equals("Success")) {
+                                                                //Toast.makeText(getApplicationContext(), "Ваши ответы получены", Toast.LENGTH_SHORT).show();
+                                                                intent = new Intent(getApplicationContext(), CreateRec.class);
+                                                                startActivity(intent);
+                                                            }
+                                                            else if(result.equals("Wrong")){
+                                                                Toast.makeText(getApplicationContext(), "Вы не выбрали ни одного варианта!", Toast.LENGTH_SHORT).show();
+                                                                intent = new Intent(getApplicationContext(),TestsFragment.class);
+                                                                intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                                                                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                                                startActivity(intent);
+                                                                overridePendingTransition (0, 0);
+                                                            }
+                                                            else if(result.equals("Error")){
+                                                                Toast.makeText(getApplicationContext(), "Ошибка!", Toast.LENGTH_SHORT).show();
+                                                                intent = new Intent(getApplicationContext(),TestsFragment.class);
+                                                                intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                                                                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                                                startActivity(intent);
+                                                                overridePendingTransition (0, 0);
+                                                            }
+                                                            else {
+                                                                Toast.makeText(getApplicationContext(), "Ошибка!", Toast.LENGTH_SHORT).show();
+                                                                intent = new Intent(getApplicationContext(),TestsFragment.class);
+                                                                intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                                                                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                                                startActivity(intent);
+                                                                overridePendingTransition (0, 0);
+                                                            }
+                                                            //startActivity(intent);
 
-                                                        //Toast.makeText(getApplicationContext(), data[0], Toast.LENGTH_SHORT).show();
+                                                            //Toast.makeText(getApplicationContext(), data[0], Toast.LENGTH_SHORT).show();
+                                                        }
                                                     }
+
+
+                                                    //Toast.makeText(getApplicationContext(), data[0], Toast.LENGTH_SHORT).show();
                                                 }
+                                            });
 
 
-                                                //Toast.makeText(getApplicationContext(), data[0], Toast.LENGTH_SHORT).show();
-                                            }
-                                        });
+                                            //Toast.makeText(getApplicationContext(), arrayList.toString(), Toast.LENGTH_SHORT).show();
+                                        }
+                                    }// end onClick
+                                });
+                                //t.setText(Arrays.deepToString(ask));
+                                //t.setText(Arrays.toString(ask));
 
-
-                                        //Toast.makeText(getApplicationContext(), arrayList.toString(), Toast.LENGTH_SHORT).show();
-                                    }
-                                }// end onClick
-                            });
-                            //t.setText(Arrays.deepToString(ask));
-                            //t.setText(Arrays.toString(ask));
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                            t.setText(e.toString());
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                                t.setText(e.toString());
+                            }
                         }
-
                     }
                 }
             }

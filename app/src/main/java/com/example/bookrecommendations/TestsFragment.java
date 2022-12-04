@@ -97,44 +97,40 @@ public class TestsFragment extends Fragment {
                 PutDataNew putData = new PutDataNew("http://192.168.56.1/tests/parsingNameTests.php", "POST");
                 if (putData.startPut()) {
                     if (putData.onComplete()) {
-                        ArrayList<JSONObject> listItems;
+                        ArrayList<JSONObject> listItems, listItems1;
                         String result = putData.getResult();
 
                         final JSONObject[] a = new JSONObject[1];
                         final String[] title = new String[100];
+                        final String[] titles = new String[100];
+                        final String[] ask1 = new String[100];
+                        final String[] ask2 = new String[100];
+                        final String[] ask3 = new String[100];
+                        final String[] ask4 = new String[100];
                         final String loc="l";
                         //progressBar.setVisibility(View.INVISIBLE);
                         try {   JSONObject object = new JSONObject(EncodingToUTF8(result));
                             JSONArray jsonarray = object.getJSONArray("nameTests");
+                            JSONArray jsonarray1 = object.getJSONArray("newNameTests");
                             //JSONArray jsonarray = object.toJSONArray(object.names());
 
                             listItems = getArrayListFromJSONArray(jsonarray);
-                            //t.setText(listItems.get(0).getString("1"));
+                            listItems1 = getArrayListFromJSONArray(jsonarray1);
+
+                            //t.setText(titles[2]);
                             for(int i=0;i<listItems.size();i++) {
                                 title[i] = listItems.get(i).getString(getName(i+1));
-                                arrayList.add(title[i]);
+                                titles[i] = listItems1.get(i).getString(getName(i+1));
+                                arrayList.add(titles[i]);
                                 listView.setOnItemClickListener( new AdapterView.OnItemClickListener() {
                                     public void onItemClick(AdapterView<?> arg0, View view, int i, long arg3) {
                                         Intent intent =null;
-
-                                        switch (i)
-                                        {
-                                            case 0:
-                                                intent = new Intent(getActivity(), QuizeActivity.class);
-                                                intent.putExtra("nameTest", title[i]);
-                                                break;
-                                            case 1:
-                                                intent = new Intent(getActivity(), LogIn.class);break;
-                                            default: intent = new Intent(getActivity(), SignUp.class);break;
-                                        }
+                                        intent = new Intent(getActivity(), QuizeActivity.class);
+                                        intent.putExtra("nameTest", title[i]);
                                         startActivity(intent);
                                     }
                                 });
                             }
-
-
-
-
                             arrayAdapter.notifyDataSetChanged();
                         } catch (JSONException e) {
                             e.printStackTrace();

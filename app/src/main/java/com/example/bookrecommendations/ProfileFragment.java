@@ -1,6 +1,5 @@
 package com.example.bookrecommendations;
 
-import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -11,20 +10,14 @@ import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
 
-import androidx.annotation.Dimension;
 import androidx.annotation.RequiresApi;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 
-import android.os.Handler;
-import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.TextView;
-import android.widget.Toast;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -114,45 +107,68 @@ public class ProfileFragment extends Fragment {
             }// end onClick
         });
         LinearLayout constraintLayout;
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("MySharedPref", Context.MODE_PRIVATE);
+        String role = sharedPreferences.getString("role", "");
 
-        Button bt_setting = new Button(getContext());
-        bt_setting.setText("Обновление личных данных");
-        bt_setting.setBackgroundResource(R.drawable.btn_item_in_profile);
-        bt_setting.setWidth(850);
-        bt_setting.setHeight(200);
-        bt_setting.setTextColor(Color.parseColor("#F38269"));
-        bt_setting.setLeftTopRightBottom(20,20,0,0);
-        bt_setting.setTypeface(Typeface.createFromAsset(getActivity().getAssets(), "fonts/rubik_extra_bold.ttf"));
-        bt_setting.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), UpdatePersonalData.class);
-                startActivity(intent);
+            Button bt_setting = new Button(getContext());
+            bt_setting.setText("Обновление личных данных");
+            bt_setting.setBackgroundResource(R.drawable.btn_item_in_profile);
+            bt_setting.setWidth(850);
+            bt_setting.setHeight(200);
+            bt_setting.setTextColor(Color.parseColor("#F38269"));
+            bt_setting.setLeftTopRightBottom(20, 20, 0, 0);
+            bt_setting.setTypeface(Typeface.createFromAsset(getActivity().getAssets(), "fonts/rubik_extra_bold.ttf"));
+            bt_setting.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(getActivity(), UpdatePersonalData.class);
+                    startActivity(intent);
 
-            }// end onClick
-        });
-        Button bt_EUZ = new Button(getContext());
-        bt_EUZ.setText("Обновление данных входа");
-        bt_EUZ.setBackgroundResource(R.drawable.btn_item_in_profile);
-        bt_EUZ.setWidth(850);
-        bt_EUZ.setHeight(200);
-        bt_EUZ.setY(70);
-        bt_EUZ.setTextColor(Color.parseColor("#F38269"));
-        bt_EUZ.setLeftTopRightBottom(20,20,0,0);
-        bt_EUZ.setTypeface(Typeface.createFromAsset(getActivity().getAssets(), "fonts/rubik_extra_bold.ttf"));
-        bt_EUZ.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), UpdateDataEUZ.class);
-                startActivity(intent);
+                }// end onClick
+            });
+            Button bt_EUZ = new Button(getContext());
+            bt_EUZ.setText("Обновление данных входа");
+            bt_EUZ.setBackgroundResource(R.drawable.btn_item_in_profile);
+            bt_EUZ.setWidth(850);
+            bt_EUZ.setHeight(200);
+            bt_EUZ.setY(70);
+            bt_EUZ.setTextColor(Color.parseColor("#F38269"));
+            bt_EUZ.setLeftTopRightBottom(20, 20, 0, 0);
+            bt_EUZ.setTypeface(Typeface.createFromAsset(getActivity().getAssets(), "fonts/rubik_extra_bold.ttf"));
+            bt_EUZ.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(getActivity(), UpdateDataEUZ.class);
+                    startActivity(intent);
 
-            }// end onClick
-        });
+                }// end onClick
+            });
 
-        constraintLayout = (LinearLayout)rootView.findViewById(R.id.linearLayout);
-        constraintLayout.addView(bt_setting);
-        //constraintLayout.addView(rootView.createRigidArea(new Dimension(5, 0)));
-        constraintLayout.addView(bt_EUZ);
+            constraintLayout = (LinearLayout) rootView.findViewById(R.id.linearLayout);
+            constraintLayout.addView(bt_setting);
+            //constraintLayout.addView(rootView.createRigidArea(new Dimension(5, 0)));
+            constraintLayout.addView(bt_EUZ);
+        if(role.equals("admin")) {
+            Button bt_add_test = new Button(getContext());
+            bt_add_test.setText("Добавить тест");
+            bt_add_test.setBackgroundResource(R.drawable.btn_item_in_profile);
+            bt_add_test.setWidth(850);
+            bt_add_test.setHeight(200);
+            bt_add_test.setY(140);
+            bt_add_test.setTextColor(Color.parseColor("#F38269"));
+            bt_add_test.setLeftTopRightBottom(20, 100, 0, 0);
+            bt_add_test.setTypeface(Typeface.createFromAsset(getActivity().getAssets(), "fonts/rubik_extra_bold.ttf"));
+            bt_add_test.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(getActivity(), AddTest.class);
+                    startActivity(intent);
+
+                }// end onClick
+            });
+            constraintLayout.addView(bt_add_test);
+        }
+
         return rootView;
     }
 }
