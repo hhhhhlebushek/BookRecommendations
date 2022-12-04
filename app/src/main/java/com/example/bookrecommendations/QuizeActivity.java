@@ -53,7 +53,7 @@ public class QuizeActivity extends AppCompatActivity {
                 PutData putData = new PutData("http://192.168.56.1/tests/p.php", "POST", field, DATA);
                 if (putData.startPut()) {
                     if (putData.onComplete()) {
-                        ArrayList<JSONObject> listItems, listItems1, listItems2, listItems3, listItems4;
+                        ArrayList<JSONObject> listItems, listItems1, listItems2, listItems3, listItems4, listItems5, listItems6, listItems7, listItems8, listItems9, listItems10;
                         String result = putData.getResult();
                         if (result.equals("wrong") || result.equals("Error") ) {
                             Toast.makeText(getApplicationContext(), "бебебе", Toast.LENGTH_SHORT).show();
@@ -94,6 +94,24 @@ public class QuizeActivity extends AppCompatActivity {
                                 JSONArray jsonarray4 = object.getJSONArray("ask4");
                                 listItems4 = getArrayListFromJSONArray(jsonarray4);
 
+                                JSONArray jsonarray5 = object.getJSONArray("ask5");
+                                listItems5 = getArrayListFromJSONArray(jsonarray5);
+
+                                JSONArray jsonarray6 = object.getJSONArray("ask6");
+                                listItems6 = getArrayListFromJSONArray(jsonarray6);
+
+                                JSONArray jsonarray7 = object.getJSONArray("ask7");
+                                listItems7 = getArrayListFromJSONArray(jsonarray7);
+
+                                JSONArray jsonarray8 = object.getJSONArray("ask8");
+                                listItems8 = getArrayListFromJSONArray(jsonarray8);
+
+                                JSONArray jsonarray9 = object.getJSONArray("ask9");
+                                listItems9 = getArrayListFromJSONArray(jsonarray9);
+
+                                JSONArray jsonarray10 = object.getJSONArray("ask10");
+                                listItems10 = getArrayListFromJSONArray(jsonarray10);
+
 
                                 for(int i=0;i<listItems.size();i++) {
                                     title[i] = listItems.get(i).getString(getName(i+1));
@@ -104,6 +122,12 @@ public class QuizeActivity extends AppCompatActivity {
                                     ask[1][i] = listItems2.get(i).getString(getName(i + 1));
                                     ask[2][i] = listItems3.get(i).getString(getName(i + 1));
                                     ask[3][i] = listItems4.get(i).getString(getName(i + 1));
+                                    ask[4][i] = listItems5.get(i).getString(getName(i + 1));
+                                    ask[5][i] = listItems6.get(i).getString(getName(i + 1));
+                                    ask[6][i] = listItems7.get(i).getString(getName(i + 1));
+                                    ask[7][i] = listItems8.get(i).getString(getName(i + 1));
+                                    ask[8][i] = listItems9.get(i).getString(getName(i + 1));
+                                    ask[9][i] = listItems10.get(i).getString(getName(i + 1));
                                 }
                                 arrayList.clear();
 
