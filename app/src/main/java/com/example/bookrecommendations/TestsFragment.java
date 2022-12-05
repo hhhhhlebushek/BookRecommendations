@@ -17,6 +17,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -44,6 +45,7 @@ public class TestsFragment extends Fragment {
     private String mParam1;
     private String mParam2;
     ListView listView;
+    SearchView searchView;
 
     ArrayList<String> arrayList=new ArrayList<>();
     ArrayAdapter<String> arrayAdapter;
@@ -84,6 +86,8 @@ public class TestsFragment extends Fragment {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_tests, container, false);
         listView=(ListView) rootView.findViewById(R.id.list);
+        searchView=(SearchView) rootView.findViewById(R.id.search);
+
         arrayAdapter=new ArrayAdapter<String>(getActivity(), R.layout.item, arrayList);
         listView.setAdapter(arrayAdapter);
         TextView t=rootView.findViewById(R.id.text);
@@ -130,6 +134,20 @@ public class TestsFragment extends Fragment {
                                         startActivity(intent);
                                     }
                                 });
+                                searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+                                    @Override
+                                    public boolean onQueryTextSubmit(String s) {
+                                        arrayAdapter.getFilter().filter(s);
+                                        return false;
+                                    }
+
+                                    @Override
+                                    public boolean onQueryTextChange(String s) {
+                                        arrayAdapter.getFilter().filter(s);
+                                        return false;
+                                    }
+                                });
+
                             }
                             arrayAdapter.notifyDataSetChanged();
                         } catch (JSONException e) {
