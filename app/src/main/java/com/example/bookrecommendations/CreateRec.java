@@ -29,7 +29,7 @@ public class CreateRec  extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.acrivity_create_rec);
-        TextView t = findViewById(R.id.t);
+        //TextView t = findViewById(R.id.t);
         listView=(ListView) findViewById(R.id.list);
         arrayAdapter=new ArrayAdapter<String>(getApplicationContext(), R.layout.item_rec, arrayList);
         listView.setAdapter(arrayAdapter);
@@ -51,11 +51,11 @@ public class CreateRec  extends AppCompatActivity {
                         final String[] author = new String[100];
                         final String[] year = new String[100];
                         final String[] stepen = new String[100];
-                        final String[][] address = new String[100][100];
+                        /*final String[][] address = new String[100][100];
                         final String[][] timework = new String[100][100];
                         final String[][] numberphone = new String[100][100];
                         final String[][] quantity = new String[100][100];
-                        final String[][] price = new String[100][100];
+                        final String[][] price = new String[100][100];*/
 
                         List keys = null;
                         final String[] s = new String[100];
@@ -75,7 +75,7 @@ public class CreateRec  extends AppCompatActivity {
                             JSONArray jsonarray4 = object.getJSONArray("stepen");
                             JSONArray jsonarray5 = object.getJSONArray("isbn");
                             //JSONArray jsonarray5 = object.toJSONArray(object.names());
-                            s[0] = object.optString("address");
+                           /* s[0] = object.optString("address");
                             s[1] = object.optString("timeWork");
                             s[2] = object.optString("numberPhone");
                             s[3] = object.optString("quantity");
@@ -85,7 +85,7 @@ public class CreateRec  extends AppCompatActivity {
                             JSONObject tw = object.optJSONObject("timeWork");
                             JSONObject np = object.optJSONObject("numberPhone");
                             JSONObject qu = object.optJSONObject("quantity");
-                            JSONObject pr = object.optJSONObject("price");
+                            JSONObject pr = object.optJSONObject("price");*/
 
                             /*JSONObject object1 = ad.optJSONObject("3");
                             String k = object1.keys().next();
@@ -107,7 +107,7 @@ public class CreateRec  extends AppCompatActivity {
 
                             //t.setText(tw.toString());
                             //JSONObject object11=null;
-                            int y = 0;
+                           /* int y = 0;
                             String vv = null;
                             String kk = null;
                             final String[] KK1 = new String[20];
@@ -129,21 +129,6 @@ public class CreateRec  extends AppCompatActivity {
                                     KK1[i] = object11.keys().next().toString();//ключ объекта
                                     VV1[i] = object11.getString(KK1[i]).toString();//нужное мне значение
 
-                                    /*tw.keys().forEachRemaining(key -> {
-                                                Object value = null;
-                                                try {
-                                                    value = tw.get(key);
-                                                } catch (JSONException e) {
-                                                    e.printStackTrace();
-                                                }
-                                                //t.setText("Key: {0}\tValue: {1}" + key + value);
-
-                                            });*/
-
-
-
-                                    //Log.v(TAG, "key = " + tw.names().getString(i) + " value = " + );
-                                    //KK2[i] = tw.names().getString(i);//ключ объекта
                                     if(tw.names().optString(o) != null || tw.has(String.valueOf(o))) {
                                         VV2[o] = tw.optString(tw.names().optString(o).toString());//нужное мне значение
                                         VV3[o] = np.optString(np.names().optString(o).toString());//нужное мне значение
@@ -165,7 +150,7 @@ public class CreateRec  extends AppCompatActivity {
                             }
 
                             //t.setText(VV2[2].toString());
-                            o=0;
+                            o=0;*/
                             for (int i = 0; i < listName.size(); i++) {
                                 isbn[i] = listISBN.get(i).getString(getName(i + 1));
                                 //String q= String.valueOf(y);
@@ -174,10 +159,10 @@ public class CreateRec  extends AppCompatActivity {
                                 String lol = "w";
                                 for (int j = 0; j < 10; j++) {
                                     Log.i("isbn:", "[" + isbn[i] + "]");
-                                    Log.i("KK: ", "[" + KK1[j] + "]");
+                                    //Log.i("KK: ", "[" + KK1[j] + "]");
                                     Log.i("i:", "[" + i + "]");
                                     Log.i("j: ", "[" + j + "]");
-                                    if (isbn[i].equals(KK1[j])) {
+                                    /*if (isbn[i].equals(KK1[j])) {
                                         //t.setText(j);
                                         lol = VV1[j];
                                         address[i][j] = VV1[j];
@@ -188,7 +173,7 @@ public class CreateRec  extends AppCompatActivity {
                                         //Log.i("address["+i+"]["+j+"]: ", "["+address[i][j]+"]");
                                         System.out.println("timework[" + i + "][" + j + "]: " + timework[i][o]);
                                         o++;
-                                    }
+                                    }*/
                                 }
                                 //t.setText(address[2][4]);
                                 //t.setText(address[i]);
@@ -201,7 +186,7 @@ public class CreateRec  extends AppCompatActivity {
                                 year[i] = listYear.get(i).getString(getName(i + 1));
                                 stepen[i] = listStepen.get(i).getString(getName(i + 1));
                                 //int j=0;
-                                o=0;
+                                /*o=0;
                                 for (int j = 0; j < 10; j++) {
                                     if (isbn[i].equals(KK1[j])) {
                                         value1 = i + " " + j + "ISBN: " + isbn[i] + "\n\n" + "Название: " + title[i] + "\n\n" + "Автор: " + author[i] + "\n\n" + "Год: " + year[i] + "\n\n" + "Степень рекомендации: " + stepen[i] + "\n\n" + "адрес: " + address[i][j] + "\n\n" + "рабочее время: " + timework[i][o] + "\n\n" + "номер телефона: " + numberphone[i][o] + "\n\n" + "количество экземпляров: " + quantity[i][o]+ "\n\n" + "усредненная стоимость: " + price[i][o];
@@ -210,9 +195,10 @@ public class CreateRec  extends AppCompatActivity {
                                         continue;
                                     }
                                     arrayList.add(value1);
-                                }
+                                }*/
                                 if (title[i] != "null" && author[i] != "null" && year[i] != "null" && stepen[i] != "null") {
-                                    value2 = i + "ISBN: " + isbn[i] + "\n\n" + "Название: " + title[i] + "\n\n" + "Автор: " + author[i] + "\n\n" + "Год: " + year[i] + "\n\n" + "Степень рекомендации: " + "\n" + stepen[i];
+                                    //value2 = isbn[i] + "\n\n" + "Название: " + title[i] + "\n\n" + "Автор: " + author[i] + "\n\n" + "Год: " + year[i] + "\n\n" + "Степень рекомендации: " + "\n" + stepen[i];
+                                    value2 = "Название: " + title[i] + "\n\n" + "Автор: " + author[i] + "\n\n" + "Год: " + year[i] + "\n\n" + "Степень рекомендации: " + "\n" + stepen[i];
                                     arrayList.add(value2);
                                 }
                                 /*if(title[i]!= "null" && author[i]!= "null" && year[i]!= "null" && stepen[i]!= "null") {
@@ -232,7 +218,7 @@ public class CreateRec  extends AppCompatActivity {
                             arrayAdapter.notifyDataSetChanged();
                         } catch (JSONException e) {
                             e.printStackTrace();
-                            t.setText(e.toString());
+                            //t.setText(e.toString());
                         }
                     }
                 }

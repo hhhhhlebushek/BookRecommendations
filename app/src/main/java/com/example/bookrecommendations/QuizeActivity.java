@@ -35,7 +35,7 @@ public class QuizeActivity extends AppCompatActivity {
         TextView nameTest = findViewById(R.id.nameTest);
         TextView number = findViewById(R.id.number);
         TextView question = findViewById(R.id.question);
-        TextView t = findViewById(R.id.t);
+        //TextView t = findViewById(R.id.t);
         Button next= findViewById(R.id.buttonNext);
 
         Handler handler = new Handler(Looper.getMainLooper());
@@ -223,7 +223,7 @@ public class QuizeActivity extends AppCompatActivity {
 
                             } catch (JSONException e) {
                                 e.printStackTrace();
-                                t.setText(e.toString());
+                                //t.setText(e.toString());
                             }
                         }
                     }

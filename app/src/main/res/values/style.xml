@@ -8,10 +8,18 @@
     <style name="StartTheme" parent="Theme.AppCompat.NoActionBar">
         <item name="android:windowBackground">@drawable/background_splash</item>
     </style>
-
+    <style name="MyListStyle">
+        <item name="android:choiceMode">singleChoice</item>
+    </style>
     <style name="ToolbarTheme">
         <item name="android:textColorHint">@color/lilac</item>
         <item name="android:textColorSecondary">@color/lilac</item>
         <item name="android:textColorPrimary">@color/lilac</item>
+    </style>
+    <style name="checkBoxComponent" parent="AppTheme">
+        //Checked color
+        <item name="colorAccent">@color/lilac</item>
+        //Checkbox border color
+        <item name="android:textColorSecondary">@color/gray</item>
     </style>
 </resources>

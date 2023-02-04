@@ -148,8 +148,10 @@ public class ProfileFragment extends Fragment {
             constraintLayout.addView(bt_setting);
             //constraintLayout.addView(rootView.createRigidArea(new Dimension(5, 0)));
             constraintLayout.addView(bt_EUZ);
+        Button bt_rec = new Button(getContext());
         if(role.equals("admin")) {
             Button bt_add_test = new Button(getContext());
+
             bt_add_test.setText("Добавить тест");
             bt_add_test.setBackgroundResource(R.drawable.btn_item_in_profile);
             bt_add_test.setWidth(850);
@@ -166,7 +168,43 @@ public class ProfileFragment extends Fragment {
 
                 }// end onClick
             });
+            bt_rec.setText("Обработка рекомендаций");
+            bt_rec.setBackgroundResource(R.drawable.btn_item_in_profile);
+            bt_rec.setWidth(850);
+            bt_rec.setHeight(200);
+            bt_rec.setY(210);
+            bt_rec.setTextColor(Color.parseColor("#F38269"));
+            bt_rec.setLeftTopRightBottom(20, 100, 0, 0);
+            bt_rec.setTypeface(Typeface.createFromAsset(getActivity().getAssets(), "fonts/rubik_extra_bold.ttf"));
+            bt_rec.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(getActivity(), RecommendationsFragment.class);
+                    startActivity(intent);
+
+                }// end onClick
+            });
             constraintLayout.addView(bt_add_test);
+            constraintLayout.addView(bt_rec);
+        }
+        if(role.equals("moderator")) {
+            bt_rec.setText("Обработка рекомендаций");
+            bt_rec.setBackgroundResource(R.drawable.btn_item_in_profile);
+            bt_rec.setWidth(850);
+            bt_rec.setHeight(200);
+            bt_rec.setY(140);
+            bt_rec.setTextColor(Color.parseColor("#F38269"));
+            bt_rec.setLeftTopRightBottom(20, 100, 0, 0);
+            bt_rec.setTypeface(Typeface.createFromAsset(getActivity().getAssets(), "fonts/rubik_extra_bold.ttf"));
+            bt_rec.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(getActivity(), RecommendationsFragment.class);
+                    startActivity(intent);
+
+                }// end onClick
+            });
+            constraintLayout.addView(bt_rec);
         }
 
         return rootView;
