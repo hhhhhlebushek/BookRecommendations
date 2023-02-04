@@ -1,3 +1,5 @@
+
+
 package com.example.bookrecommendations;
 
 import android.content.Intent;
@@ -62,7 +64,7 @@ public class AddTest extends AppCompatActivity {
                     if (i[0] == 10) {
                         next.setText("Завершить");
                     } else if (i[0] == 11) {
-                        Intent intent = new Intent(getApplicationContext(), TestsFragment.class);
+                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                         startActivity(intent);
                         Handler handler1 = new Handler();
                         handler1.post(new Runnable() {
@@ -124,4 +126,3 @@ public class AddTest extends AppCompatActivity {
         return i;
     }
 }
-
