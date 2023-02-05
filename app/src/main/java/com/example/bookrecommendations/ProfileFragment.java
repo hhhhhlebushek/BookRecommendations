@@ -179,7 +179,7 @@ public class ProfileFragment extends Fragment {
             bt_rec.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent intent = new Intent(getActivity(), RecommendationsFragment.class);
+                    Intent intent = new Intent(getActivity(), ProcessingRecommendations.class);
                     startActivity(intent);
 
                 }// end onClick
@@ -199,7 +199,7 @@ public class ProfileFragment extends Fragment {
             bt_rec.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent intent = new Intent(getActivity(), RecommendationsFragment.class);
+                    Intent intent = new Intent(getActivity(), ProcessingRecommendations.class);
                     startActivity(intent);
 
                 }// end onClick

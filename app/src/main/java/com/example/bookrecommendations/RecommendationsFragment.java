@@ -180,7 +180,8 @@ public class RecommendationsFragment extends Fragment {
                                     String result = putData.getResult();
 
                                     if (result.equals("Success")) {
-                                        Toast.makeText(getActivity(), "Успех", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getActivity(), "Спасибо за рекомендацию! Мы обязательно её рассмотрим! :)", Toast.LENGTH_SHORT).show();
+                                        name.getText().clear(); author.getText().clear(); year.getText().clear(); genre.getText().clear();
                                     } else {
                                         Toast.makeText(getActivity(), result, Toast.LENGTH_SHORT).show();
                                     }
@@ -193,6 +194,7 @@ public class RecommendationsFragment extends Fragment {
                 Toast.makeText(getActivity(), "Заполните все обязательные поля (название, автор, год и жанр книги)!", Toast.LENGTH_SHORT).show();
             }
         });
+
         Log.d(LOG_TAG, "itemSelect: "
                 + arrayList.toString());
         /*ArrayList<String> movies = new ArrayList<String>();
