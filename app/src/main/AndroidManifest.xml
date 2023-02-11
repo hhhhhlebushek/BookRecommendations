@@ -29,6 +29,8 @@
         <activity android:name=".AddTest" android:exported="false"></activity>
         <activity android:name=".ProcessingRecommendations" android:exported="false"></activity>
         <activity android:name=".ProcessingRecommendationsItems" android:exported="false"></activity>
+        <activity android:name=".Note" android:exported="false"></activity>
+        <activity android:name=".NoteNew" android:exported="false"></activity>
         <activity android:name=".SignUp" android:exported="false"/>
         <activity
             android:name=".MainListApp"

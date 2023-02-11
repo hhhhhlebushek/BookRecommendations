@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    tools:context=".Note"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="560dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/btn_item_in_profile"
+        android:orientation="vertical"
+        android:scrollbars="none"
+        app:elevation="6dp"
+        android:layout_gravity="center"
+        >
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/login"
+            android:hint="Имя заметки"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:inputType="text"
+            android:fontFamily="@font/rubik"
+            android:text=""
+            android:textColor="@color/black"
+            android:textColorHint="@color/lilac"
+            android:textSize="18dp"
+            app:met_baseColor="@color/orange"
+            app:met_floatingLabel="highlight"
+            app:met_primaryColor="@color/lilac"
+            />
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/password"
+            android:maxLength="5000"
+            android:hint="Текст заметки"
+            android:fontFamily="@font/rubik"
+            android:text=""
+            android:textColor="@color/black"
+            android:textColorHint="@color/lilac"
+            android:textSize="18dp"
+            app:met_baseColor="@color/orange"
+            android:inputType="textMultiLine"
+            app:met_floatingLabel="highlight"
+            app:met_primaryColor="@color/lilac"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="20dp"
+            />
+
+    </LinearLayout>
+    <Button
+        android:id="@+id/save"
+        android:layout_width="match_parent"
+        android:layout_height="42dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:background="@drawable/btn_reg"
+        android:orientation="vertical"
+        android:text="Сохранить изменения"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="14dp"
+        />
+    <Button
+        android:id="@+id/delete"
+        android:layout_width="match_parent"
+        android:layout_height="42dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/btn_reg"
+        android:orientation="vertical"
+        android:text="Удалить заметку"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="14dp"
+        />
+
+</LinearLayout>
