@@ -111,7 +111,7 @@ public class ProfileFragment extends Fragment {
         String role = sharedPreferences.getString("role", "");
 
             Button bt_setting = new Button(getContext());
-            bt_setting.setText("Обновление личных данных");
+            bt_setting.setText("Настройка аккаунта");
             bt_setting.setBackgroundResource(R.drawable.btn_item_in_profile);
             bt_setting.setWidth(850);
             bt_setting.setHeight(200);

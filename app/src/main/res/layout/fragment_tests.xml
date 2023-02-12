@@ -26,20 +26,7 @@
         android:layout_marginRight="20dp"
         tools:ignore="MissingConstraints"
         />
-    <TextView
-        android:id="@+id/text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/rubik_bold"
-        android:gravity="center"
-        android:textColor="@color/black"
-        android:textSize="12dp"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        tools:ignore="MissingConstraints"
-        />
+
 <SearchView
     android:id="@+id/search"
     android:layout_width="match_parent"
@@ -53,6 +40,7 @@
     android:queryBackground="@android:color/transparent"
     app:layout_constraintTop_toTopOf="parent"
     android:layout_marginLeft="20dp"
+    android:layout_marginTop="20dp"
     android:layout_marginRight="20dp">
 </SearchView>
     <LinearLayout
@@ -60,7 +48,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:background="@color/white"
         android:orientation="vertical"
         android:scrollbars="none"

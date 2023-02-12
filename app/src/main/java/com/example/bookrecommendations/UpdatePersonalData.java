@@ -30,6 +30,23 @@ public class UpdatePersonalData extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences("MySharedPref", Context.MODE_PRIVATE);
         String id = sharedPreferences.getString("id", "");
 
+        String fam = sharedPreferences.getString("fam", "");
+        String name = sharedPreferences.getString("name", "");
+        String email = sharedPreferences.getString("email", "");
+        String number = sharedPreferences.getString("number", "");
+
+        TextView f = findViewById(R.id.fam);
+        TextView na = findViewById(R.id.name);
+        TextView e = findViewById(R.id.email);
+        TextView n = findViewById(R.id.number);
+        TextView p = findViewById(R.id.updatepersonaldata);
+        p.setTypeface(Typeface.createFromAsset(this.getAssets(), "fonts/rubik_semi_bold.ttf"));
+
+        f.setText(fam.toString());
+        na.setText(name.toString());
+        e.setText(email.toString());
+        n.setText(number.toString());
+
         NewUsername = findViewById(R.id.newName);
         NewUserFam = findViewById(R.id.newFam);
         NewUserEmail = findViewById(R.id.newEmail);
@@ -77,6 +94,11 @@ public class UpdatePersonalData extends AppCompatActivity {
 
                                     if (result.equals("Success")) {
                                         Toast.makeText(getApplicationContext(), "Имя удачно обновлено!", Toast.LENGTH_SHORT).show();
+                                        save("1", "name", name);
+                                        finish();
+                                        overridePendingTransition(0, 0);
+                                        startActivity(getIntent());
+                                        overridePendingTransition(0, 0);
                                     } else {
                                         Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT).show();
                                     }
@@ -120,6 +142,11 @@ public class UpdatePersonalData extends AppCompatActivity {
 
                                     if (result.equals("Success")) {
                                         Toast.makeText(getApplicationContext(), "Фамилия удачно обновлена!", Toast.LENGTH_SHORT).show();
+                                        save("1", "fam", lastname);
+                                        finish();
+                                        overridePendingTransition(0, 0);
+                                        startActivity(getIntent());
+                                        overridePendingTransition(0, 0);
                                     } else {
                                         Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT).show();
                                     }
@@ -163,6 +190,11 @@ public class UpdatePersonalData extends AppCompatActivity {
 
                                     if (result.equals("Success")) {
                                         Toast.makeText(getApplicationContext(), "Email удачно обновлен!", Toast.LENGTH_SHORT).show();
+                                        save("1", "email", email);
+                                        finish();
+                                        overridePendingTransition(0, 0);
+                                        startActivity(getIntent());
+                                        overridePendingTransition(0, 0);
                                     } else {
                                         Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT).show();
                                     }
@@ -205,6 +237,11 @@ public class UpdatePersonalData extends AppCompatActivity {
 
                                     if (result.equals("Success")) {
                                         Toast.makeText(getApplicationContext(), "Номер телефона удачно обновлен!", Toast.LENGTH_SHORT).show();
+                                        save("1", "number", phone);
+                                        finish();
+                                        overridePendingTransition(0, 0);
+                                        startActivity(getIntent());
+                                        overridePendingTransition(0, 0);
                                     } else {
                                         Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT).show();
                                     }
@@ -218,6 +255,20 @@ public class UpdatePersonalData extends AppCompatActivity {
                 }
             }
         });
+    }
+    public void save(String str, String type, String s) {
+        SharedPreferences sharedPreferences = getSharedPreferences("MySharedPref", MODE_PRIVATE);
+        SharedPreferences.Editor myEdit = sharedPreferences.edit();
+        myEdit.putString("check", str);
+        if (type.equals("fam"))
+        myEdit.putString("fam", s);
+        else if (type.equals("name"))
+        myEdit.putString("name", s);
+        else if (type.equals("email"))
+        myEdit.putString("email", s);
+        else if (type.equals("number"))
+        myEdit.putString("number", s);
+        myEdit.commit();
     }
 
 }

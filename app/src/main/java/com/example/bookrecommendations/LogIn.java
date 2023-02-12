@@ -95,6 +95,10 @@ public class LogIn extends AppCompatActivity {
                             final JSONObject[] a = new JSONObject[1];
                             final String[] id = new String[1];
                             final String[] role = new String[1];
+                            final String[] fam = new String[1];
+                            final String[] name = new String[1];
+                            final String[] email = new String[1];
+                            final String[] number = new String[1];
                             try {
                                 JSONObject object = new JSONObject(EncodingToUTF8(result));
 
@@ -103,6 +107,10 @@ public class LogIn extends AppCompatActivity {
                                 //t.setText(listItems.get(0).getString("idEUZ"));
                                 id[0] = listItems.get(0).getString("idEUZ");
                                 role[0] = listItems.get(0).getString("role");
+                                fam[0] = listItems.get(0).getString("lastName");
+                                name[0] = listItems.get(0).getString("firstName");
+                                email[0] = listItems.get(0).getString("email");
+                                number[0] = listItems.get(0).getString("numberphone");
 
                                 //t.setText(role[0]);
 
@@ -113,11 +121,11 @@ public class LogIn extends AppCompatActivity {
                             if (id[0]!=null) {
                                 Intent intent = new Intent(getApplicationContext(), MainListApp.class);
                                 startActivity(intent);
-                                save("1", id[0], role[0]);
+                                save("1", id[0], role[0], fam[0], name[0], email[0], number[0]);
 
                                 finish();
                             } else {
-                                save("0", "0", null);
+                                save("0", "0", null, null, null, null, null);
                                 Toast.makeText(getApplicationContext(), "Ошибка входа", Toast.LENGTH_SHORT).show();
                             }
                         }
@@ -129,12 +137,16 @@ public class LogIn extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "Не все обязательные поля заполнены", Toast.LENGTH_SHORT).show();
         }
     }
-    public void save(String str, String id, String role) {
+    public void save(String str, String id, String role, String fam, String name, String email, String number) {
         SharedPreferences sharedPreferences = getSharedPreferences("MySharedPref", MODE_PRIVATE);
         SharedPreferences.Editor myEdit = sharedPreferences.edit();
         myEdit.putString("check", str);
         myEdit.putString("id", id);
         myEdit.putString("role", role);
+        myEdit.putString("fam", fam);
+        myEdit.putString("name", name);
+        myEdit.putString("email", email);
+        myEdit.putString("number", number);
         myEdit.commit();
     }
 
