@@ -38,8 +38,8 @@ public class Note extends AppCompatActivity {
         save.setTypeface(Typeface.createFromAsset(getApplicationContext().getAssets(), "fonts/rubik_extra_bold.ttf"));
         delete.setTypeface(Typeface.createFromAsset(getApplicationContext().getAssets(), "fonts/rubik_extra_bold.ttf"));
 
-        editTextTitle = findViewById(R.id.login);
-        editTextText = findViewById(R.id.password);
+        editTextTitle = findViewById(R.id.title);
+        editTextText = findViewById(R.id.text);
         editTextTitle.setText(title); editTextText.setText(text);
 
 

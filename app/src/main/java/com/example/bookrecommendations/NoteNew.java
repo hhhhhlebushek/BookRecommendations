@@ -14,6 +14,10 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import org.json.JSONException;
+
+import javax.xml.transform.sax.SAXResult;
+
 public class NoteNew extends AppCompatActivity {
     EditText editTextTitle, editTextText;
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,54 +27,62 @@ public class NoteNew extends AppCompatActivity {
         String id = sharedPreferences.getString("id", "");
 
         Button add = findViewById(R.id.add);
-
+        editTextTitle = findViewById(R.id.title);
+        editTextText = findViewById(R.id.text);
         add.setTypeface(Typeface.createFromAsset(getApplicationContext().getAssets(), "fonts/rubik_extra_bold.ttf"));
-
+        //final String title = editTextTitle.getText().toString();
 
 
 
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!String.valueOf(editTextTitle.getText()).equals("")) {
-                    Handler handler = new Handler(Looper.getMainLooper());
-                    handler.post(new Runnable() {
-                        @Override
-                        public void run() {
+                try{
+                    String title = String.valueOf(editTextTitle.getText());
+                    if (!title.equals("")) {
+                        Handler handler = new Handler(Looper.getMainLooper());
+                        handler.post(new Runnable() {
+                            @Override
+                            public void run() {
 
-                            String[] field = new String[3];
-                            field[0] = "id";
-                            field[1] = "title";
-                            field[2] = "text";
+                                String[] field = new String[3];
+                                field[0] = "id";
+                                field[1] = "title";
+                                field[2] = "text";
 
-                            String[] data = new String[3];
-                            data[0] = id;
-                            data[1] = String.valueOf(editTextTitle.getText());
-                            data[2] = String.valueOf(editTextText.getText());
+                                String[] data = new String[3];
+                                data[0] = id;
+                                data[1] = String.valueOf(editTextTitle.getText());
+                                data[2] = String.valueOf(editTextText.getText());
 
-                            PutData putData = new PutData("http://192.168.56.1/login/AddNotes.php", "POST", field, data);
+                                PutData putData = new PutData("http://192.168.56.1/login/AddNotes.php", "POST", field, data);
 
-                            if (putData.startPut()) {
-                                if (putData.onComplete()) {
+                                if (putData.startPut()) {
+                                    if (putData.onComplete()) {
 
-                                    String result = putData.getResult();
+                                        String result = putData.getResult();
 
-                                    if (result.equals("Success 1")) {
-                                        Toast.makeText(getApplicationContext(), "Заметка добавлена! :)", Toast.LENGTH_SHORT).show();
-                                        Intent intent =null;
-                                        intent = new Intent(getApplicationContext(), MainListApp.class);
-                                        startActivity(intent);
-                                    } else {
-                                        Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT).show();
+                                        if (result.equals("Success 1")) {
+                                            Toast.makeText(getApplicationContext(), "Заметка добавлена! :)", Toast.LENGTH_SHORT).show();
+                                            Intent intent =null;
+                                            intent = new Intent(getApplicationContext(), MainListApp.class);
+                                            startActivity(intent);
+                                        } else {
+                                            Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT).show();
+                                        }
                                     }
                                 }
                             }
-                        }
-                    });
-                }
-                else
+                        });
+                    }
+                    else
                     Toast.makeText(getApplicationContext(), "Введите имя заметки", Toast.LENGTH_SHORT).show();
+
+        } catch (Exception e) {
+                e.printStackTrace();
+                    System.out.println(e.toString());
             }
+        }
         });
     }
 

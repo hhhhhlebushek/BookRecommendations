@@ -24,7 +24,7 @@
         <com.rengwuxian.materialedittext.MaterialEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/login"
+            android:id="@+id/title"
             android:hint="Имя заметки"
             android:layout_marginTop="20dp"
             android:layout_marginLeft="20dp"
@@ -43,7 +43,7 @@
         <com.rengwuxian.materialedittext.MaterialEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/password"
+            android:id="@+id/text"
             android:maxLength="5000"
             android:hint="Текст заметки"
             android:fontFamily="@font/rubik"
