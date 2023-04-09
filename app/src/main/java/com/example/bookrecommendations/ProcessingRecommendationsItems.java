@@ -1,5 +1,7 @@
 package com.example.bookrecommendations;
 
+import static android.view.KeyEvent.KEYCODE_BACK;
+
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Build;
@@ -7,6 +9,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -84,8 +87,12 @@ public class ProcessingRecommendationsItems  extends AppCompatActivity {
 
                                 if (result.equals("Success 1")) {
                                     Toast.makeText(getApplicationContext(), "Рекомендация сохранена в общую базу и удалена из временного хранилища! :)", Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent(getApplicationContext(), ProcessingRecommendations.class);
+                                    Intent intent = new Intent(getApplicationContext(), MainListApp.class);
                                     startActivity(intent);
+                                    Intent intent1 = new Intent(getApplicationContext(), ProcessingRecommendations.class);
+                                    startActivity(intent1);
+                                    finish();
+
                                 } else {
                                     Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT).show();
                                 }
@@ -120,8 +127,11 @@ public class ProcessingRecommendationsItems  extends AppCompatActivity {
 
                                 if (result.equals("Success 2")) {
                                     Toast.makeText(getApplicationContext(), "Рекомендация удалена из временного хранилища! :)", Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent(getApplicationContext(), ProcessingRecommendations.class);
+                                    Intent intent = new Intent(getApplicationContext(), MainListApp.class);
                                     startActivity(intent);
+                                    Intent intent1 = new Intent(getApplicationContext(), ProcessingRecommendations.class);
+                                    startActivity(intent1);
+                                    finish();
                                 } else {
                                     Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT).show();
                                 }
@@ -132,4 +142,5 @@ public class ProcessingRecommendationsItems  extends AppCompatActivity {
             }
         });
     }
+
 }

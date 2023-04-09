@@ -51,11 +51,7 @@ public class CreateRec  extends AppCompatActivity {
                         final String[] author = new String[100];
                         final String[] year = new String[100];
                         final String[] stepen = new String[100];
-                        /*final String[][] address = new String[100][100];
-                        final String[][] timework = new String[100][100];
-                        final String[][] numberphone = new String[100][100];
-                        final String[][] quantity = new String[100][100];
-                        final String[][] price = new String[100][100];*/
+
 
                         List keys = null;
                         final String[] s = new String[100];
@@ -66,14 +62,17 @@ public class CreateRec  extends AppCompatActivity {
                             //Log.i("tagconvertstr", "["+result+"]");
 
                             JSONObject object = new JSONObject(EncodingToUTF8(result));
-                            //title[0] = object.getString("name");
+                            title[0] = object.getString("stepen");
                             String value1, value2;
+
                             //count = object.getInt("count");
-                            JSONArray jsonarray1 = object.getJSONArray("name");
+                            JSONArray jsonarray1 = object.optJSONArray("name");
                             JSONArray jsonarray2 = object.getJSONArray("author");
                             JSONArray jsonarray3 = object.getJSONArray("year");
                             JSONArray jsonarray4 = object.getJSONArray("stepen");
-                            JSONArray jsonarray5 = object.getJSONArray("isbn");
+
+                            //t.setText(jsonarray1.toString());
+
                             //JSONArray jsonarray5 = object.toJSONArray(object.names());
                            /* s[0] = object.optString("address");
                             s[1] = object.optString("timeWork");
@@ -102,7 +101,7 @@ public class CreateRec  extends AppCompatActivity {
                             listAuthor = getArrayListFromJSONArray(jsonarray2);
                             listYear = getArrayListFromJSONArray(jsonarray3);
                             listStepen = getArrayListFromJSONArray(jsonarray4);
-                            listISBN = getArrayListFromJSONArray(jsonarray5);
+
                             //listAdress = getArrayListFromJSONArray(s[0]);
 
                             //t.setText(tw.toString());
@@ -152,7 +151,7 @@ public class CreateRec  extends AppCompatActivity {
                             //t.setText(VV2[2].toString());
                             o=0;*/
                             for (int i = 0; i < listName.size(); i++) {
-                                isbn[i] = listISBN.get(i).getString(getName(i + 1));
+                                //isbn[i] = listISBN.get(i).getString(getName(i + 1));
                                 //String q= String.valueOf(y);
                                 //object11 = ad.optJSONObject("3");//индекс объекта
                                 //JSONObject object11 = ad.optJSONObject(q.toString());//индекс объекта

@@ -126,7 +126,7 @@ public class LogIn extends AppCompatActivity {
                                 finish();
                             } else {
                                 save("0", "0", null, null, null, null, null);
-                                Toast.makeText(getApplicationContext(), "Ошибка входа", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), result.toString(), Toast.LENGTH_SHORT).show();
                             }
                         }
                     }
