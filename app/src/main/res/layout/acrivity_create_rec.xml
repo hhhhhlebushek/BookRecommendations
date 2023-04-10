@@ -21,6 +21,19 @@
         android:layout_marginRight="20dp"
         tools:ignore="MissingConstraints"
         />
+    <TextView
+        android:id="@+id/nameWindow"
+        android:text="Обязательно посмотрите степень рекомендации \nдля каждой книги :)"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/rubik"
+        android:gravity="center"
+        android:textColor="@color/gray"
+        android:textSize="12dp"
+        />
 
 
     <LinearLayout

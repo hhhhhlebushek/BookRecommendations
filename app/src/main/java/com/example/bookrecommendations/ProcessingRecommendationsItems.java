@@ -8,6 +8,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -57,7 +58,7 @@ public class ProcessingRecommendationsItems  extends AppCompatActivity {
         TextView a = findViewById(R.id.author);
         TextView y = findViewById(R.id.year);
         TextView k = findViewById(R.id.keys);
-
+        k.setMovementMethod(new ScrollingMovementMethod());
         n.setText(name.toString());
         a.setText(author.toString());
         y.setText(year.toString());
