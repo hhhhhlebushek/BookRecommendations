@@ -1,10 +1,15 @@
 package com.example.bookrecommendations;
 
+import static com.example.bookrecommendations.R.drawable.*;
+
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
-import android.widget.ArrayAdapter;
+import android.text.Spannable;
+import android.text.SpannableStringBuilder;
+import android.text.style.ImageSpan;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -15,25 +20,48 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedReader;
+import java.io.File;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
+import java.util.Random;
+import java.util.stream.Collectors;
 
 public class CreateRec  extends AppCompatActivity {
     ListView listView;
-    ArrayList<String> arrayList=new ArrayList<>();
-    ArrayAdapter<String> arrayAdapter;
+    int h=0;
+    ArrayList<Bitmap> img_bitmap=new ArrayList<Bitmap>();
+    int[] myImageList1 = new int[]{roman1, roman2, roman3, roman4, roman5, roman6, roman7, roman8, roman9, roman10, roman11, roman12, roman13};
+    int[] myImageList2 = new int[]{pov1, pov2, pov3, pov4, pov5};
+    int[] myImageList3 = new int[]{ras1, ras2, ras3, ras4, ras5};
+    int[] myImageList4 = new int[]{kom1, kom2, kom3, kom4, kom5};
+    int[] myImageList5 = new int[]{fan1, fan2, fan3, fan4, fan5};
+
+    final int[] imageArray =
+            {image5,
+                    icon,
+                    image2,
+                    book_start,
+                    bookadviser, image_auto, textsplash, image3,image4,image5};
+    //ArrayList<Object> arrayList=new ArrayList<>();
+    //ArrayAdapter<Object> arrayAdapter; ArrayAdapter<Object> arrayAdapter1;
+    private BufferedReader ImageIO;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
+        int f=1;
         setContentView(R.layout.acrivity_create_rec);
-        //TextView t = findViewById(R.id.t);
+        //TextView t = findViewById(R.id.dop_p);
         listView=(ListView) findViewById(R.id.list);
-        arrayAdapter=new ArrayAdapter<String>(getApplicationContext(), R.layout.item_rec, arrayList);
-        listView.setAdapter(arrayAdapter);
-
+        ArrayList<ElementList> arrayList=new ArrayList<>();
+        ElementAdapter elementAdapter = new ElementAdapter(this, R.layout.item_rec, arrayList);
+        //arrayAdapter=new ArrayAdapter<Object>(getApplicationContext(), R.layout.item_rec, arrayList);
+        TextView c1 = new TextView(getApplicationContext());
+        listView.setAdapter(elementAdapter);
+        final int[] m = {0};
 
         Handler handler2 = new Handler();
         handler2.post(new Runnable() {
@@ -51,6 +79,7 @@ public class CreateRec  extends AppCompatActivity {
                         final String[] author = new String[100];
                         final String[] year = new String[100];
                         final String[] stepen = new String[100];
+                        final String[] picture = new String[100];
 
 
                         List keys = null;
@@ -150,40 +179,16 @@ public class CreateRec  extends AppCompatActivity {
 
                             //t.setText(VV2[2].toString());
                             o=0;*/
-                            for (int i = 0; i < listName.size(); i++) {
-                                //isbn[i] = listISBN.get(i).getString(getName(i + 1));
-                                //String q= String.valueOf(y);
-                                //object11 = ad.optJSONObject("3");//индекс объекта
-                                //JSONObject object11 = ad.optJSONObject(q.toString());//индекс объекта
-                                String lol = "w";
-                                for (int j = 0; j < 10; j++) {
-                                    Log.i("isbn:", "[" + isbn[i] + "]");
-                                    //Log.i("KK: ", "[" + KK1[j] + "]");
-                                    Log.i("i:", "[" + i + "]");
-                                    Log.i("j: ", "[" + j + "]");
-                                    /*if (isbn[i].equals(KK1[j])) {
-                                        //t.setText(j);
-                                        lol = VV1[j];
-                                        address[i][j] = VV1[j];
-                                        timework[i][o] = VV2[o];
-                                        numberphone[i][o] = VV3[o];
-                                        quantity[i][o] = VV4[o];
-                                        price[i][o] = VV5[o];
-                                        //Log.i("address["+i+"]["+j+"]: ", "["+address[i][j]+"]");
-                                        System.out.println("timework[" + i + "][" + j + "]: " + timework[i][o]);
-                                        o++;
-                                    }*/
-                                }
-                                //t.setText(address[2][4]);
-                                //t.setText(address[i]);
-
-
-                                //String object12 = ad.getString(String.valueOf(i));
-
+                            String imageName[] = {"image1","image2","image2"};
+                            for (int i = 0, j=1; i < listName.size(); i++, j++) {
+                                String imageNam = "image"+j;
+                                int st = getResources().getIdentifier(String.valueOf(imageName[0]), "drawable", getPackageName());
                                 title[i] = listName.get(i).getString(getName(i + 1));
                                 author[i] = listAuthor.get(i).getString(getName(i + 1));
                                 year[i] = listYear.get(i).getString(getName(i + 1));
                                 stepen[i] = listStepen.get(i).getString(getName(i + 1));
+                                //picture[i] = String.valueOf(getResources().getStringArray(Integer.parseInt(imageName[i])));
+
                                 //int j=0;
                                 /*o=0;
                                 for (int j = 0; j < 10; j++) {
@@ -195,11 +200,72 @@ public class CreateRec  extends AppCompatActivity {
                                     }
                                     arrayList.add(value1);
                                 }*/
-                                if (title[i] != "null" && author[i] != "null" && year[i] != "null" && stepen[i] != "null") {
-                                    //value2 = isbn[i] + "\n\n" + "Название: " + title[i] + "\n\n" + "Автор: " + author[i] + "\n\n" + "Год: " + year[i] + "\n\n" + "Степень рекомендации: " + "\n" + stepen[i];
-                                    value2 = "Название: " + title[i] + "\n\n" + "Автор: " + author[i] + "\n\n" + "Год: " + year[i] + "\n\n" + "Степень рекомендации: " + "\n" + stepen[i];
-                                    arrayList.add(value2);
+
+c1.setBackgroundResource(icon);
+
+                                c1.setCompoundDrawablesWithIntrinsicBounds(
+                                        textsplash, 0, 0, 0);
+
+c1.setWidth(10);
+c1.setHeight(10);
+                                int[] valid = { 0, 1, 2, 3, 4,5,6 };
+                                try {
+    if (title[i] == "null") continue;
+    else{
+        SpannableStringBuilder ssb = new SpannableStringBuilder(" Hello world!");
+        ssb.setSpan(new ImageSpan(getApplicationContext(), icon), 0, 1, Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+        c1.setText(ssb, TextView.BufferType.SPANNABLE);
+
+        int idx = new Random().nextInt(myImageList1.length);
+        int randomInt = new Random().ints(1, 1, 11).findFirst().getAsInt();
+        if(title[0].equals("Война и мир")) {
+            h= Integer.parseInt(String.valueOf(getResources().getIdentifier(String.valueOf(myImageList1[m[0]]), "drawable", getPackageName())));
+        }
+        else if(title[1].equals("Драма на охоте"))
+        {
+            h= Integer.parseInt(String.valueOf(getResources().getIdentifier(String.valueOf(myImageList2[m[0]]), "drawable", getPackageName())));
+
+        }
+        else if(title[2].equals("Цветы для Элджернона"))
+        {
+            h= Integer.parseInt(String.valueOf(getResources().getIdentifier(String.valueOf(myImageList3[m[0]]), "drawable", getPackageName())));
+
+        }
+        else if(title[4].equals("Горе от ума"))
+        {
+            h= Integer.parseInt(String.valueOf(getResources().getIdentifier(String.valueOf(myImageList4[m[0]]), "drawable", getPackageName())));
+
+        }
+        else if(title[5].equals("Дюна"))
+        {
+            h= Integer.parseInt(String.valueOf(getResources().getIdentifier(String.valueOf(myImageList5[m[0]]), "drawable", getPackageName())));
+
+        }
+
+        //value2 = isbn[i] + "\n\n" + "Название: " + title[i] + "\n\n" + "Автор: " + author[i] + "\n\n" + "Год: " + year[i] + "\n\n" + "Степень рекомендации: " + "\n" + stepen[i];
+        value2 = "Название: " + title[i] + "\n\n" + "Автор: " + author[i] + "\n\n" + "Год: " + year[i] + "\n\n" + "Степень рекомендации: " + "\n" + stepen[i];
+        arrayList.add(new ElementList(h,value2));
+
+        m[0] = m[0] + 1;
+        //arrayList.add(value2);
+
+        //img_bitmap.add(ImgBitFromFile("войнаимир"));
+        /*File imgFile = new  File("C:/xampp/htdocs/picture/"+title[i]+".jpg");
+        if(imgFile.exists())
+        {
+            ImageView myImage = new ImageView(getApplicationContext());
+            myImage.setImageURI(Uri.fromFile(imgFile));
+            arrayList.add(myImage);
+        }*/
+
+    }
+}catch (Exception e1) {
+                                    e1.printStackTrace();
+                                    //t.setText(e1.toString());
                                 }
+
+
+
                                 /*if(title[i]!= "null" && author[i]!= "null" && year[i]!= "null" && stepen[i]!= "null") {
                                     do{
                                         if (isbn[i].equals(address[i][j])) {
@@ -214,7 +280,7 @@ public class CreateRec  extends AppCompatActivity {
 
 
                             }
-                            arrayAdapter.notifyDataSetChanged();
+                            elementAdapter.notifyDataSetChanged();
                         } catch (JSONException e) {
                             e.printStackTrace();
                             //t.setText(e.toString());
@@ -262,5 +328,19 @@ public class CreateRec  extends AppCompatActivity {
         }
         return keysFromObj;
     }
+    public static Bitmap ImgBitFromFile(String file_name) {
 
+        File imgFile = new File(
+                "C:/xampp/htdocs/picture/" + file_name);
+        //System.out.println("Image Exists:::" + imgFile.getAbsolutePath().toString());
+        if (imgFile.exists()) {
+            // System.gc();
+            Bitmap myBitmap = BitmapFactory.decodeFile(imgFile
+                    .getAbsolutePath());
+            //System.out.println("Image Exists:::");
+
+            return myBitmap;
+        }
+        return null;
+    }
 }
