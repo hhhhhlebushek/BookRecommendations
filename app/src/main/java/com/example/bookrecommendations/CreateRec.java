@@ -37,6 +37,13 @@ public class CreateRec  extends AppCompatActivity {
     int[] myImageList3 = new int[]{ras1, ras2, ras3, ras4, ras5};
     int[] myImageList4 = new int[]{kom1, kom2, kom3, kom4, kom5};
     int[] myImageList5 = new int[]{fan1, fan2, fan3, fan4, fan5};
+    int[] myImageList6 = new int[]{st1, st2, st3, st4, st5, st6, st7, st8, st9, st10};
+    int[] myImageList7 = new int[]{horrors2, horrors3, horrors4, horrors5, horrors6, horrors7, horrors8, horrors9, horrors10, horrors11, horrors12, horrors13};
+    int[] myImageList8 = new int[]{ccom1, ccom2, ccom3, ccom4, ccom5};
+    int[] myImageList9 = new int[]{b1, b2, b3};
+    int[] myImageList10 = new int[]{mif1, mif2, mif3};
+    int[] myImageList11 = new int[]{s1, s2, s3, s4, s5};
+    int[] myImageList12 = new int[]{sk1, sk2, sk3, sk4, sk5};
 
     final int[] imageArray =
             {image5,
@@ -224,23 +231,48 @@ c1.setHeight(10);
         else if(title[1].equals("Драма на охоте"))
         {
             h= Integer.parseInt(String.valueOf(getResources().getIdentifier(String.valueOf(myImageList2[m[0]]), "drawable", getPackageName())));
-
         }
         else if(title[2].equals("Цветы для Элджернона"))
         {
             h= Integer.parseInt(String.valueOf(getResources().getIdentifier(String.valueOf(myImageList3[m[0]]), "drawable", getPackageName())));
-
         }
         else if(title[4].equals("Горе от ума"))
         {
             h= Integer.parseInt(String.valueOf(getResources().getIdentifier(String.valueOf(myImageList4[m[0]]), "drawable", getPackageName())));
-
         }
         else if(title[5].equals("Дюна"))
         {
             h= Integer.parseInt(String.valueOf(getResources().getIdentifier(String.valueOf(myImageList5[m[0]]), "drawable", getPackageName())));
-
         }
+        else if(title[51].equals("Лирика Пушкина"))
+        {
+            h= Integer.parseInt(String.valueOf(getResources().getIdentifier(String.valueOf(myImageList6[m[0]]), "drawable", getPackageName())));
+        }
+        else if(title[35].equals("Оно"))
+        {
+            h= Integer.parseInt(String.valueOf(getResources().getIdentifier(String.valueOf(myImageList7[m[0]]), "drawable", getPackageName())));
+        }
+        else if(title[73].equals("Снежная королева"))
+        {
+            h= Integer.parseInt(String.valueOf(getResources().getIdentifier(String.valueOf(myImageList12[m[0]]), "drawable", getPackageName())));
+        }
+        else if(title[78].equals("Стихи Агнии Барто"))
+        {
+            h= Integer.parseInt(String.valueOf(getResources().getIdentifier(String.valueOf(myImageList11[m[0]]), "drawable", getPackageName())));
+        }
+        else if(title[83].equals("Комикс Черепашки-Ниндзя: Приключения"))
+        {
+            h= Integer.parseInt(String.valueOf(getResources().getIdentifier(String.valueOf(myImageList8[m[0]]), "drawable", getPackageName())));
+        }
+        else if(title[88].equals("Мифы Древней Греции"))
+        {
+            h= Integer.parseInt(String.valueOf(getResources().getIdentifier(String.valueOf(myImageList10[m[0]]), "drawable", getPackageName())));
+        }
+        else if(title[93].equals("Басни Крылова"))
+        {
+            h= Integer.parseInt(String.valueOf(getResources().getIdentifier(String.valueOf(myImageList9[m[0]]), "drawable", getPackageName())));
+        }
+
 
         //value2 = isbn[i] + "\n\n" + "Название: " + title[i] + "\n\n" + "Автор: " + author[i] + "\n\n" + "Год: " + year[i] + "\n\n" + "Степень рекомендации: " + "\n" + stepen[i];
         value2 = "Название: " + title[i] + "\n\n" + "Автор: " + author[i] + "\n\n" + "Год: " + year[i] + "\n\n" + "Степень рекомендации: " + "\n" + stepen[i];
